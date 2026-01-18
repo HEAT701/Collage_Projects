@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .sidebar-link.active { background: #f8fafc; color: #4f46e5; border-right: 4px solid #4f46e5; border-radius: 1rem 0 0 1rem; }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-slate-900">
+
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-72 bg-white border-r border-slate-200 flex flex-col shadow-sm">
+            <div class="p-8">
+                <div class="text-2xl font-black text-indigo-600 tracking-tighter italic">EMS<span class="text-slate-900">PRO.</span></div>
+            </div>
+            <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+                <a href="javascript:void(0)" onclick="showTab(this, 'dashboard')" class="sidebar-link active flex items-center p-4 font-bold transition-all">
+                    <i class="fas fa-chart-line mr-4 text-lg"></i> Dashboard
+                </a>
+                <a href="javascript:void(0)" onclick="showTab(this, 'attendance')" class="sidebar-link flex items-center p-4 font-bold text-slate-400 hover:text-indigo-600 transition-all">
+                    <i class="fas fa-calendar-check mr-4 text-lg"></i> Attendance
+                </a>
+                <a href="javascript:void(0)" onclick="showTab(this, 'leaves')" class="sidebar-link flex items-center p-4 font-bold text-slate-400 hover:text-indigo-600 transition-all">
+                    <i class="fas fa-paper-plane mr-4 text-lg"></i> Leave Requests
+                </a>
+                <a href="javascript:void(0)" onclick="showTab(this, 'tasks')" class="sidebar-link flex items-center p-4 font-bold text-slate-400 hover:text-indigo-600 transition-all">
+                    <i class="fas fa-tasks mr-4 text-lg"></i> Assign Tasks
+                </a>
+                <a href="javascript:void(0)" onclick="showTab(this, 'departments')" class="sidebar-link flex items-center p-4 font-bold text-slate-400 hover:text-indigo-600 transition-all">
+                    <i class="fas fa-cog mr-4 text-lg"></i> Department
+                </a>
+                <a href="javascript:void(0)" onclick="showTab(this, 'projects')" class="sidebar-link flex items-center p-4 font-bold text-slate-400 hover:text-indigo-600 transition-all">
+                    <i class="fas fa-file-alt mr-4 text-lg"></i> Project
+                </a>
+                <a href="javascript:void(0)" onclick="showTab(this, 'jobs')" class="sidebar-link flex items-center p-4 font-bold text-slate-400 hover:text-indigo-600 transition-all">
+                    <i class="fas fa-users mr-4 text-lg"></i> jobs
+                </a>
+
+                <a href="javascript:void(0)" onclick="showTab(this, 'settings')" class="sidebar-link flex items-center p-4 font-bold text-slate-400 hover:text-indigo-600 transition-all">
+                    <i class="fas fa-life-ring mr-4 text-lg"></i> settings
+                </a>
+            </nav>
+            <div class="p-6 border-t">
+                <div class="flex items-center gap-3">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=4f46e5&color=fff" class="w-10 h-10 rounded-xl">
+                    <div>
+                        <p class="text-sm font-bold">Admin Pro</p>
+                        <p class="text-[10px] text-slate-400">Owner Account</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col">
+            <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-100 flex items-center justify-between px-10 sticky top-0 z-10">
+                <h2 id="tab-title" class="text-xl font-bold text-slate-800">Dashboard Overview</h2>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-indigo-100 hover:scale-105 transition-all">
+                        <a href="{% url 'Employee:create_employee' %}">
+                        + New Employee
+                        </a>
+                </button>
+                </div>
+            
+            </header>
+
+            <div class="p-10 overflow-y-auto">
+                <div id="dashboard" class="tab-content active">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+                        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md transition">
+                            <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-users"></i></div>
+                            <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Employees</p>
+                            <p class="text-3xl font-black mt-1">{{total_employees}}</p>
+                            <span class="text-[10px] text-green-500 font-bold">+12 New Today</span>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md transition">
+                            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-building"></i></div>
+                            <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">Departments</p>
+                            <p class="text-3xl font-black mt-1">{{Total_departments}}</p>
+                            <span class="text-[10px] text-slate-400 font-bold tracking-tight">Across 3 Regions</span>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md transition">
+                            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-fingerprint"></i></div>
+                            <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">Present Today</p>
+                            <p class="text-3xl font-black mt-1">{{today_attendance}}</p>
+                            <div class="w-full bg-slate-100 h-1.5 rounded-full mt-2">
+                                <div class="bg-blue-600 h-1.5 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-md transition">
+                            <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-clock"></i></div>
+                            <p class="text-slate-400 text-xs font-bold uppercase tracking-wider">Pending Leaves</p>
+                            <p class="text-3xl font-black mt-1">{{pending_leaves.count}}</p>
+                            <span class="text-[10px] text-orange-400 font-bold underline cursor-pointer">Needs Review</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-lg font-bold">Recent Onboarding</h3>
+                            <button class="text-indigo-600 text-sm font-bold">See All</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="text-[10px] text-slate-400 uppercase tracking-widest">
+                                    <tr>
+                                        <th class="pb-4">Employee</th>
+                                        <th class="pb-4">Department</th>
+                                        <th class="pb-4">Designation</th>
+                                        <th class="pb-4">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm divide-y divide-slate-50">
+                                    {% for emp in recent_employees %}
+                                    <tr>
+                                        <td class="py-4 font-bold flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center text-[10px]">Em</div>
+                                            {{ emp.first_name }} {{ emp.last_name }}
+                                        </td>
+                                        <td class="py-4 text-slate-500">{{ emp.department }}</td>
+                                        <td class="py-4 text-slate-500">{{ emp.job }}</td>
+                                        <td class="py-4"><span class="bg-emerald-100 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-bold">Full Time</span></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tasks" class="tab-content">
+                    <div class="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 p-10 max-w-4xl">
+                        <h3 class="text-2xl font-black mb-8 italic text-indigo-600">Assign New Mission</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-slate-400 ml-1">MISSION TITLE</label>
+                                <input type="text" placeholder="e.g. Q4 Audit Preparation" class="w-full p-4 bg-slate-50 border-none rounded-2xl focus:ring-2 ring-indigo-500 outline-none transition">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-slate-400 ml-1">SELECT AGENT</label>
+                                <select class="w-full p-4 bg-slate-50 border-none rounded-2xl focus:ring-2 ring-indigo-500 outline-none appearance-none transition">
+                                    <option>Search Employee...</option>
+                                    <option>Rahul Verma (Eng)</option>
+                                    <option>Sara Khan (Mkt)</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2 space-y-2">
+                                <label class="text-xs font-bold text-slate-400 ml-1">MISSION BRIEFING</label>
+                                <textarea placeholder="Describe the task goals..." class="w-full p-4 bg-slate-50 border-none rounded-2xl focus:ring-2 ring-indigo-500 outline-none h-40 transition"></textarea>
+                            </div>
+                            <button class="bg-indigo-600 text-white p-5 rounded-2xl font-bold hover:bg-slate-900 transition-all shadow-xl shadow-indigo-100 active:scale-95">
+                                <i class="fas fa-paper-plane mr-2"></i> Deploy Mission
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="attendance" class="tab-content">
+                    <div class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-2xl font-black italic text-indigo-600">Daily Attendance Log</h3>
+                            <div class="flex gap-2">
+                                <input type="date" class="bg-slate-50 border-none rounded-xl p-2 text-sm focus:ring-2 ring-indigo-500 outline-none">
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-bold">Export CSV</button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="text-[10px] text-slate-400 uppercase tracking-widest">
+                                    <tr>
+                                        <th class="pb-4">Employee</th>
+                                        <th class="pb-4">Check In</th>
+                                        <th class="pb-4">Check Out</th>
+                                        <th class="pb-4">Total Hours</th>
+                                        <th class="pb-4">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm divide-y divide-slate-50">
+                                    <tr>
+                                        <td class="py-4 font-bold">John Doe</td>
+                                        <td class="py-4 text-slate-500">09:00 AM</td>
+                                        <td class="py-4 text-slate-500">06:00 PM</td>
+                                        <td class="py-4 font-bold">9h 00m</td>
+                                        <td class="py-4"><span class="bg-emerald-100 text-emerald-600 px-3 py-1 rounded-full text-[10px] font-bold">On Time</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="leaves" class="tab-content">
+                    <div class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                        <h3 class="text-2xl font-black mb-8 italic text-indigo-600">Leave Requests</h3>
+                        <div class="grid grid-cols-1 gap-4">
+                    
+                            <div class="flex items-center justify-between p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center font-bold">LR</div>
+                                    <div>
+                                        <p class="font-bold text-slate-800"></p>
+                                        <p class="text-xs text-slate-400"></p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <button class="px-6 py-2 bg-emerald-500 text-white rounded-xl text-sm font-bold hover:bg-emerald-600 transition">Approve</button>
+                                    <button class="px-6 py-2 bg-rose-500 text-white rounded-xl text-sm font-bold hover:bg-rose-600 transition">Reject</button>
+                                </div>
+                            </div>
+                       
+                            <p class="text-slate-400 text-center py-10">No pending leave requests found.</p>
+                    
+                        </div>
+                    </div>
+                </div>
+
+                <div id="salary" class="tab-content">
+                    <div class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                        <h3 class="text-2xl font-black mb-8 italic text-indigo-600">Payroll Management</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            <div class="p-6 bg-indigo-50 rounded-[2rem]">
+                                <p class="text-xs font-bold text-indigo-400 uppercase">Total Payout (This Month)</p>
+                                <p class="text-2xl font-black text-indigo-700">₹ 4,50,000</p>
+                            </div>
+                        </div>
+                        <table class="w-full text-left">
+                            <thead class="text-[10px] text-slate-400 uppercase tracking-widest">
+                                <tr>
+                                    <th class="pb-4">Employee</th>
+                                    <th class="pb-4">Base Salary</th>
+                                    <th class="pb-4">Deductions</th>
+                                    <th class="pb-4">Net Payable</th>
+                                    <th class="pb-4">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-slate-50">
+                                <tr>
+                                    <td class="py-4 font-bold">Rahul Verma</td>
+                                    <td class="py-4 text-slate-500">₹ 50,000</td>
+                                    <td class="py-4 text-rose-500">-₹ 2,000</td>
+                                    <td class="py-4 font-black">₹ 48,000</td>
+                                    <td class="py-4"><button class="text-indigo-600 font-bold hover:underline">Pay Now</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="departments" class="tab-content">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-bl-full -mr-10 -mt-10 transition-all group-hover:scale-110"></div>
+                            <h4 class="text-xl font-black text-slate-800">Engineering</h4>
+                            <p class="text-sm text-slate-400 mb-6">12 Team Members</p>
+                            <button class="w-full py-3 bg-slate-50 text-slate-600 font-bold rounded-2xl hover:bg-indigo-600 hover:text-white transition">View Details</button>
+                        </div>
+                        <div class="border-2 border-dashed border-slate-200 rounded-[2.5rem] flex items-center justify-center p-8 hover:border-indigo-400 transition cursor-pointer group">
+                             <p class="font-bold text-slate-400 group-hover:text-indigo-600">+ Add New Department</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="projects" class="tab-content">
+                    <div class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                        <h3 class="text-2xl font-black mb-8 italic text-indigo-600">Active Projects</h3>
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="p-6 border border-slate-100 rounded-3xl hover:shadow-md transition">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h4 class="font-bold text-lg">Website Redesign 2024</h4>
+                                        <p class="text-xs text-slate-400">Lead: Sara Khan</p>
+                                    </div>
+                                    <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-[10px] font-bold">In Progress</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-indigo-600 h-full" style="width: 65%"></div>
+                                </div>
+                                <p class="text-[10px] text-slate-400 mt-2 font-bold uppercase tracking-widest">Progress: 65%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="jobs" class="tab-content">
+                    <div class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-2xl font-black italic text-indigo-600">Open Vacancies</h3>
+                            <button class="bg-slate-900 text-white px-6 py-2.5 rounded-xl font-bold text-sm">Post New Job</button>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="p-6 bg-slate-50 rounded-3xl flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold">Senior UI/UX Designer</h4>
+                                    <p class="text-xs text-slate-400 italic">Remote | Full-time | $60k - $80k</p>
+                                </div>
+                                <button class="text-indigo-600 font-bold hover:underline">Manage Applicants (14)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="settings" class="tab-content">
+                    <div class="max-w-2xl bg-white rounded-[2.5rem] p-10 border border-slate-100 shadow-sm">
+                        <h3 class="text-2xl font-black mb-8 italic text-indigo-600">System Configuration</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between py-4 border-b border-slate-50">
+                                <div>
+                                    <p class="font-bold">Email Notifications</p>
+                                    <p class="text-xs text-slate-400">Receive alerts for new leave requests</p>
+                                </div>
+                                <div class="w-12 h-6 bg-indigo-600 rounded-full flex items-center px-1">
+                                    <div class="w-4 h-4 bg-white rounded-full ml-auto"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between py-4 border-b border-slate-50">
+                                <div>
+                                    <p class="font-bold">Auto-Payroll</p>
+                                    <p class="text-xs text-slate-400">Generate salary slips automatically on 1st</p>
+                                </div>
+                                <div class="w-12 h-6 bg-slate-200 rounded-full flex items-center px-1">
+                                    <div class="w-4 h-4 bg-white rounded-full"></div>
+                                </div>
+                            </div>
+                            <button class="w-full bg-rose-50 text-rose-600 py-4 rounded-2xl font-bold hover:bg-rose-600 hover:text-white transition">Log Out From All Devices</button>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function showTab(element, tabId) {
+            // Sidebar styling update
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+                link.classList.add('text-slate-400');
+            });
+            element.classList.add('active');
+            element.classList.remove('text-slate-400');
+
+            // Logic to switch tabs
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update Header Title
+            document.getElementById('tab-title').innerText = element.innerText;
+
+            // function showTab(element, tabId) {
+        // 1. Sabhi sidebar links se active state hatayein
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.classList.remove('active', 'text-indigo-600');
+            link.classList.add('text-slate-400');
+        });
+
+        // 2. Click kiye gaye link ko active banayein
+        element.classList.add('active');
+        element.classList.remove('text-slate-400');
+
+        // 3. Saare content sections ko chhupayein
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // 4. Target tab ko dikhayein
+        const targetTab = document.getElementById(tabId);
+        if (targetTab) {
+            targetTab.classList.add('active');
+        }
+
+        // 5. Header Title update karein (Icon ko hatakar sirf text lein)
+        const tabName = element.innerText.trim();
+        document.getElementById('tab-title').innerText = tabName;
+    
+    }
+    </script>
+</body>
+</html>
