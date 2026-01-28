@@ -9,4 +9,9 @@ def Job_view(request):
         if form.is_valid():
             form.save()
             return redirect('Home')
-    return render(request, 'Job.html', {'form': form})
+    else:
+        form = JobForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'Job.html',context)

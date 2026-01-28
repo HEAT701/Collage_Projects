@@ -156,7 +156,7 @@
                                     <select name="job" class="glass-input w-full p-4 rounded-2xl outline-none font-bold text-slate-600 appearance-none cursor-pointer">
                                         <option value="">--- Select Job ---</option>
                                         {% for job in jobs %}
-                                            <option value="{{ job.id }}">{{ job.name }}</option>
+                                            <option value="{{ job.id }}">{{ job.title }}</option>
                                         {% endfor %}
                                     </select>
                                     <i class="fas fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-slate-300 pointer-events-none text-[10px]"></i>

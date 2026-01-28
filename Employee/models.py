@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.timezone import now
-from Department.models import Department
-from Role.models import Job
+
 class BusinessProfile(models.Model):
     business_name = models.CharField(max_length=100)
     business_address = models.CharField(max_length=255)
@@ -23,37 +22,28 @@ class Employee(AbstractUser):
 
     business_profile = models.ForeignKey(
         BusinessProfile,
+        null= True,
+        blank= True,
         on_delete=models.CASCADE,
-        null=True,
-        blank=True,
         related_name='employees'
     )
 
-    department = models.ForeignKey(
-        Department,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='employees'
-    )   
-
-    job = models.ForeignKey(
-        Job,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='employees'
-    )
-
-    phone = models.CharField(max_length=15, null=True, blank=True)
+    phone = models.CharField(max_length=15, blank=True)
     hire_date = models.DateField(default=now)
-    salary = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    salary = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
 
     manager = models.ForeignKey(
         'self',
         on_delete=models.SET_NULL,
         null=True,
-        blank=True
+        blank=True,
+        related_name='team_members'
     )
 
     def __str__(self):

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Portal | EMS PRO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: radial-gradient(circle at top right, #f1f5f9, #ffffff);
+            min-height: 100vh;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: slideUp 0.5s ease-out; }
+        
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); }
+        .active-link { 
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); 
+            color: white !important; 
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.2);
+            transform: scale(1.02);
+        }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="text-slate-900">
+
+    <nav class="glass sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
+                    <i class="fas fa-bolt text-white"></i>
+                </div>
+                <div class="text-2xl font-black text-slate-800 tracking-tighter">EMS<span class="text-indigo-600">PRO.</span></div>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-extrabold text-slate-800">Rahul Verma</span>
+                    <span class="text-[10px] font-bold text-indigo-500 uppercase">Product Designer</span>
+                </div>
+                <div class="relative group">
+                    <img src="https://ui-avatars.com/api/?name=Rahul+Verma&background=4f46e5&color=fff" class="w-12 h-12 rounded-2xl cursor-pointer ring-4 ring-indigo-50 shadow-xl">
+                    <div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-4 border-white rounded-full"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <div class="lg:col-span-3">
+                <div class="glass p-4 rounded-[2.5rem] shadow-xl shadow-slate-200/50 sticky top-28">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4 ml-4">Menu</p>
+                    <div class="space-y-3">
+                        <button onclick="switchTab('my-attendance', this)" class="w-full flex items-center gap-4 p-4 font-bold text-slate-500 hover:text-indigo-600 transition-all rounded-2xl active-link">
+                            <i class="fas fa-calendar-alt"></i> My Attendance
+                        </button>
+                        <button onclick="switchTab('apply-leave', this)" class="w-full flex items-center gap-4 p-4 font-bold text-slate-500 hover:text-indigo-600 transition-all rounded-2xl">
+                            <i class="fas fa-paper-plane"></i> Leave Request
+                        </button>
+                        <button onclick="switchTab('my-profile', this)" class="w-full flex items-center gap-4 p-4 font-bold text-slate-500 hover:text-indigo-600 transition-all rounded-2xl">
+                            <i class="fas fa-fingerprint"></i> My Profile
+                        </button>
+                    </div>
+                    <div class="mt-10 pt-6 border-t border-slate-100">
+                        <a href="#" class="flex items-center gap-4 p-4 font-bold text-rose-500 hover:bg-rose-50 rounded-2xl transition-all">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-9">
+                
+                <div id="my-attendance" class="tab-content active space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass p-6 rounded-[2rem] card-hover">
+                            <p class="text-xs font-bold text-slate-400 uppercase">Present Days</p>
+                            <h3 class="text-3xl font-black text-slate-800">22<span class="text-sm text-green-500 ml-2">/26</span></h3>
+                        </div>
+                        <div class="glass p-6 rounded-[2rem] card-hover">
+                            <p class="text-xs font-bold text-slate-400 uppercase">Late Arrivals</p>
+                            <h3 class="text-3xl font-black text-slate-800">02</h3>
+                        </div>
+                        <div class="glass p-6 rounded-[2rem] card-hover border-l-4 border-l-indigo-500">
+                            <p class="text-xs font-bold text-slate-400 uppercase">Working Hours</p>
+                            <h3 class="text-3xl font-black text-slate-800">182h</h3>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200/60 overflow-hidden border border-slate-100">
+                        <div class="p-8 border-b border-slate-50 flex justify-between items-center">
+                            <h2 class="text-xl font-black text-slate-800 tracking-tight">Recent Activity</h2>
+                            <button class="text-xs font-bold text-indigo-600 bg-indigo-50 px-4 py-2 rounded-lg">Download PDF</button>
+                        </div>
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-50/50 text-[10px] text-slate-400 uppercase tracking-widest font-bold">
+                                <tr>
+                                    <th class="p-6">Date</th>
+                                    <th class="p-6">Timing</th>
+                                    <th class="p-6">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-50 font-bold text-sm">
+                                <tr class="hover:bg-slate-50/50 transition-all">
+                                    <td class="p-6">Jan 26, 2026</td>
+                                    <td class="p-6 text-slate-500">09:00 AM - 06:00 PM</td>
+                                    <td class="p-6"><span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-xl text-[10px]">Perfect</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="apply-leave" class="tab-content space-y-6">
+                    <div class="max-w-2xl mx-auto bg-white rounded-[3rem] p-10 shadow-2xl shadow-slate-200 border border-slate-100 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -mr-16 -mt-16"></div>
+                        <h2 class="text-2xl font-black text-slate-800 mb-8">Request Time Off</h2>
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-black text-slate-400 uppercase ml-1">From</label>
+                                    <input type="date" class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 ring-indigo-500 outline-none">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-black text-slate-400 uppercase ml-1">To</label>
+                                    <input type="date" class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 ring-indigo-500 outline-none">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-black text-slate-400 uppercase ml-1">Reason</label>
+                                <textarea rows="4" class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 ring-indigo-500 outline-none" placeholder="I am not feeling well..."></textarea>
+                            </div>
+                            <button class="w-full bg-indigo-600 text-white p-5 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-indigo-100">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="my-profile" class="tab-content">
+                    <div class="bg-white rounded-[3rem] shadow-xl overflow-hidden">
+                        <div class="h-32 bg-gradient-to-r from-indigo-500 to-purple-600"></div>
+                        <div class="px-10 pb-10 -mt-16">
+                            <div class="flex flex-col md:flex-row items-end gap-6 mb-8">
+                                <img src="https://ui-avatars.com/api/?name=Rahul+Verma&size=256&background=fff&color=4f46e5" class="w-32 h-32 rounded-[2rem] border-8 border-white shadow-lg">
+                                <div class="flex-1 pb-2">
+                                    <h1 class="text-3xl font-black text-slate-800">Rahul Verma</h1>
+                                    <p class="text-slate-400 font-bold">Member of Engineering Team</p>
+                                </div>
+                                <button class="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm mb-2">Edit Profile</button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-slate-50">
+                                <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50">
+                                    <i class="fas fa-envelope text-indigo-500"></i>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 uppercase font-bold">Official Email</p>
+                                        <p class="font-bold text-sm text-slate-700">rahul.v@emspro.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50">
+                                    <i class="fas fa-calendar-day text-indigo-500"></i>
+                                    <div>
+                                        <p class="text-[10px] text-slate-400 uppercase font-bold">Joined Date</p>
+                                        <p class="font-bold text-sm text-slate-700">12 Oct 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tabId, element) {
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active-link'));
+            element.classList.add('active-link');
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,12 +1,19 @@
 from django.db import models
-
+from Employee.models import BusinessProfile,Employee
 class Project(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
 
-    employees = models.ManyToManyField(
-        'Employee.Employee',
+    business_profile = models.ForeignKey(
+        BusinessProfile,
+        on_delete=models.CASCADE,
         related_name='projects'
+    )
+
+    employees = models.ManyToManyField(
+        Employee,
+        related_name='projects',
+        blank=True
     )
 
     start_date = models.DateField()

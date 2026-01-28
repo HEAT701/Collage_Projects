@@ -14,3 +14,13 @@ def Attendance_view(request):
         'form': AttendanceForm
     }
     return render(request, 'Attendance.html', contex)
+
+
+
+# get all the attendance records
+def Attendance_list_view(request):
+    attendance_records = Attendance.objects.all()
+    context = {
+        'attendance_records': attendance_records
+    }
+    return context
