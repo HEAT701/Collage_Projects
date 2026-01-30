@@ -3,45 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>owner ragister</title>
-</head>
-<body>
-    <h1> Owner ragister form </h1>
-    <form action="" method="post">  
-        {% csrf_token %}
-        <label for="first_name">First Name:</label>
-        <input type="text" id="first_name" name="first_name" required><br><br>
-
-        <label for="last_name">Last Name:</label>
-        <input type="text" id="last_name" name="last_name" required><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" required><br><br>
+    <title>Owner Registration | EMS PRO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: #F8FAFC;
+            background-image: radial-gradient(#6366f115 1px, transparent 1px);
+            background-size: 30px 30px;
+            scroll-behavior: smooth;
+        }
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
 
-        <h2>Business Details</h2>
+        .hero-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
 
-        <label for="business_name">Business Name:</label>
-        <input type="text" id="business_name" name="business_name" required><br><br>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        <label for="business_address">Business Address:</label>
-        <input type="text" id="business_address" name="business_address" required><br><br>
+        .input-focus:focus {
+            background: white !important;
+            border-color: #4F46E5 !important;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
 
-        <label for="business_phone">Business Phone:</label>
-        <input type="text" id="business_phone" name="business_phone" required><br><br>
+        .label-style {
+            color: #1E293B;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
-        <label for="business_email">Business Email:</label>
-        <input type="email" id="business_email" name="business_email" required><br><br>
+        .pricing-card:hover { transform: scale(1.02); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
 
-        <input type="submit" value="Register">
-    </form>
+    <nav class="glass-nav fixed w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
+                    <i class="fas fa-layer-group text-white"></i>
+                </div>
+                <div class="text-2xl font-black text-slate-900 tracking-tighter italic">EMS<span class="text-indigo-600">PRO.</span></div>
+            </div>
+            <div class="flex items-center gap-8">
+                <a href="#solutions" class="hidden md:block text-sm font-bold text-slate-600 hover:text-indigo-600 transition">Solutions</a>
+                <a href="#pricing" class="hidden md:block text-sm font-bold text-slate-600 hover:text-indigo-600 transition">Pricing</a>
+                <div class="h-6 w-[1px] bg-slate-200 hidden md:block"></div>
+                <a href="{% url 'Home' %}" class="text-sm font-extrabold text-indigo-600 hover:text-indigo-800 transition">Login</a>
+                <a href="#register-form" class="bg-slate-900 text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-indigo-600 transition-all shadow-lg shadow-slate-200">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-20 px-6">
+        
+        <div class="max-w-6xl mx-auto text-center mb-24">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+                Scale your team with <span class="text-indigo-600 font-black italic">Confidence.</span>
+            </h1>
+            <p class="text-slate-500 font-semibold text-lg max-w-2xl mx-auto">
+                Everything you need to manage employees, attendance, and payroll in one powerful dashboard. Join 2,000+ businesses today.
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#register-form" class="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-900 transition shadow-xl">Create Account</a>
+                <a href="#solutions" class="bg-white border border-slate-200 px-8 py-4 rounded-2xl font-bold text-slate-600 hover:bg-slate-50 transition">Learn More</a>
+            </div>
+        </div>
+
+        <div id="solutions" class="max-w-7xl mx-auto py-24">
+            <div class="text-center mb-16">
+                <h2 class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] mb-4">Powerful Features</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">One Solution for Every Need</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/40">
+                    <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 text-xl shadow-inner"><i class="fas fa-clock"></i></div>
+                    <h4 class="text-xl font-black text-slate-800 mb-4">Smart Attendance</h4>
+                    <p class="text-slate-500 font-medium leading-relaxed">Automate check-ins with geo-fencing and real-time tracking for office and field staff.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/40">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 text-xl shadow-inner"><i class="fas fa-wallet"></i></div>
+                    <h4 class="text-xl font-black text-slate-800 mb-4">Instant Payroll</h4>
+                    <p class="text-slate-500 font-medium leading-relaxed">Calculate salaries, taxes, and deductions automatically with single-click bulk processing.</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/40">
+                    <div class="w-14 h-14 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mb-6 text-xl shadow-inner"><i class="fas fa-file-invoice"></i></div>
+                    <h4 class="text-xl font-black text-slate-800 mb-4">Reports & Analytics</h4>
+                    <p class="text-slate-500 font-medium leading-relaxed">Generate detailed PDF/CSV reports for audits, performance, and financial planning.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="pricing" class="max-w-6xl mx-auto py-24">
+            <div class="text-center mb-16">
+                <h2 class="text-xs font-black text-emerald-600 uppercase tracking-[0.3em] mb-4">Pricing Plans</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Flexible for Any Business Size</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="pricing-card bg-white p-12 rounded-[3rem] border border-slate-200 shadow-lg flex flex-col">
+                    <h4 class="text-lg font-bold text-slate-400 mb-4 uppercase tracking-widest">Startup</h4>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-5xl font-black text-slate-900">₹0</span>
+                        <span class="text-slate-400 font-bold">/month</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 flex-grow">
+                        <li class="flex items-center gap-3 font-bold text-slate-600 text-sm"><i class="fas fa-check text-indigo-500"></i> Up to 10 Employees</li>
+                        <li class="flex items-center gap-3 font-bold text-slate-600 text-sm"><i class="fas fa-check text-indigo-500"></i> Manual Attendance Logs</li>
+                        <li class="flex items-center gap-3 font-bold text-slate-600 text-sm"><i class="fas fa-check text-indigo-500"></i> Basic Reports</li>
+                    </ul>
+                    <a href="#register-form" class="w-full text-center py-4 rounded-2xl bg-slate-100 text-slate-900 font-black hover:bg-slate-200 transition">Get Started</a>
+                </div>
+                <div class="pricing-card bg-slate-900 p-12 rounded-[3rem] shadow-2xl shadow-indigo-200 border border-indigo-500 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-6 right-6 bg-indigo-600 text-white px-4 py-1 rounded-full text-[10px] font-black tracking-widest uppercase">Popular</div>
+                    <h4 class="text-lg font-bold text-indigo-400 mb-4 uppercase tracking-widest">Professional</h4>
+                    <div class="flex items-baseline gap-1 mb-8">
+                        <span class="text-5xl font-black text-white">₹4,999</span>
+                        <span class="text-slate-400 font-bold">/month</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 flex-grow text-white">
+                        <li class="flex items-center gap-3 font-bold text-sm"><i class="fas fa-check text-indigo-400"></i> Unlimited Employees</li>
+                        <li class="flex items-center gap-3 font-bold text-sm"><i class="fas fa-check text-indigo-400"></i> Automated GPS Attendance</li>
+                        <li class="flex items-center gap-3 font-bold text-sm"><i class="fas fa-check text-indigo-400"></i> Bulk Payroll Processing</li>
+                        <li class="flex items-center gap-3 font-bold text-sm"><i class="fas fa-check text-indigo-400"></i> Premium 24/7 Support</li>
+                    </ul>
+                    <a href="#register-form" class="w-full text-center py-4 rounded-2xl bg-indigo-600 text-white font-black hover:scale-105 transition shadow-lg shadow-indigo-500/40">Buy License</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="register-form" class="w-full max-w-6xl mx-auto py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] mb-4">Onboarding</h2>
+                <h3 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight italic">Register Your Business</h3>
+            </div>
+            
+            <div class="hero-card rounded-[3rem] overflow-hidden flex flex-col lg:flex-row">
+                <div class="flex-[1.2] p-10 md:p-14 lg:p-16">
+                    <div class="flex items-center gap-4 mb-10">
+                        <span class="text-indigo-600 font-black text-xl">01.</span>
+                        <h2 class="text-2xl font-black text-slate-900 italic">Founder Details</h2>
+                    </div>
+
+                    <form action="" method="post" class="space-y-6">
+                        {% csrf_token %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="label-style ml-1">First Name</label>
+                                <input type="text" name="first_name" required placeholder="Ex: Rahul" 
+                                    class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-slate-800 input-focus transition-all">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="label-style ml-1">Last Name</label>
+                                <input type="text" name="last_name" required placeholder="Ex: Verma" 
+                                    class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-slate-800 input-focus transition-all">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="label-style ml-1">Personal Email</label>
+                                <input type="email" name="email" required placeholder="rahul@domain.com" 
+                                    class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-slate-800 input-focus transition-all">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="label-style ml-1">Phone Number</label>
+                                <input type="text" name="phone" required placeholder="+91 00000 00000" 
+                                    class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-slate-800 input-focus transition-all">
+                            </div>
+                        </div>
+
+                        <div class="p-8 bg-indigo-50/50 rounded-[2.5rem] border border-indigo-100/50 mt-10 space-y-6">
+                            <p class="text-[10px] font-black text-indigo-500 uppercase tracking-widest text-center">Security Credentials</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="label-style text-indigo-700">Username</label>
+                                    <input type="text" name="username" required placeholder="rahul_admin" 
+                                        class="w-full p-4 bg-white border border-indigo-200 rounded-xl outline-none font-black text-indigo-600 input-focus transition-all">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="label-style text-indigo-700">Password</label>
+                                    <input type="password" name="password" required placeholder="••••••••" 
+                                        class="w-full p-4 bg-white border border-indigo-200 rounded-xl outline-none font-black text-indigo-600 input-focus transition-all">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="flex-1 p-10 md:p-14 lg:p-16 bg-slate-50/50 border-l border-slate-100">
+                    <div class="flex items-center gap-4 mb-10">
+                        <span class="text-emerald-600 font-black text-xl">02.</span>
+                        <h2 class="text-2xl font-black text-slate-900 italic">Company Profile</h2>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="label-style ml-1">Legal Business Name</label>
+                            <input type="text" name="business_name" required placeholder="Ex: TechInnovate Pvt Ltd" 
+                                class="w-full p-4 bg-white border border-slate-200 rounded-2xl outline-none font-bold text-slate-800 input-focus transition-all">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="label-style ml-1">Official Business Address</label>
+                            <textarea name="business_address" required rows="3" placeholder="Street, Building, City, State..." 
+                                class="w-full p-4 bg-white border border-slate-200 rounded-2xl outline-none font-bold text-slate-800 input-focus transition-all resize-none"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="label-style ml-1">Work Email</label>
+                                <input type="email" name="business_email" required placeholder="hr@business.com" 
+                                    class="w-full p-4 bg-white border border-slate-200 rounded-2xl outline-none font-bold text-slate-800 input-focus transition-all">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="label-style ml-1">Work Phone</label>
+                                <input type="text" name="business_phone" required placeholder="011-XXXXXXX" 
+                                    class="w-full p-4 bg-white border border-slate-200 rounded-2xl outline-none font-bold text-slate-800 input-focus transition-all">
+                            </div>
+                        </div>
+
+                        <div class="pt-8">
+                            <button type="submit" class="w-full bg-slate-900 text-white p-6 rounded-3xl font-black text-xl hover:bg-indigo-600 transition-all shadow-2xl shadow-slate-300 flex items-center justify-center gap-4 active:scale-95">
+                                Launch Dashboard <i class="fas fa-rocket text-indigo-400"></i>
+                            </button>
+                            <p class="text-center text-[11px] text-slate-400 font-bold mt-6 uppercase tracking-tighter">
+                                Guaranteed Secure & Private Onboarding
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed top-[20%] right-[-10%] w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[120px] -z-10"></div>
+    <div class="fixed bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-emerald-100/30 rounded-full blur-[100px] -z-10"></div>
+
 </body>
 </html>

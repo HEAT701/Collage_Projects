@@ -7,7 +7,7 @@ def Department_view(request):
         form = DepartmentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('Home')
+            return redirect('Dashboard:dashboard_view')
     context ={
         'form': DepartmentForm()
     }

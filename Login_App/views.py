@@ -10,14 +10,14 @@ def login_view(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is None:
-            return HttpResponseRedirect('/login/?error=Invalid credentials')
+            return HttpResponse("Invalid username or password")
         if user.role == 'owner':
             login(request, user)
-            return redirect('dashboard')
-        else:
+            return redirect('Dashboard:dashboard_view')
+        elif user.role == 'employee':
             login(request, user)
-            return redirect('Home')
-    return render(request, 'login.html')
+            return redirect('Dashboard:employee_dashboard')
+    return render(request, 'Login.html')
 
 def logout_view(request):
     logout(request)

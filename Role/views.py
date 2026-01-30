@@ -8,7 +8,7 @@ def Job_view(request):
         form = JobForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('Home')
+            return redirect('Dashboard:dashboard_view')
     else:
         form = JobForm()
     context = {

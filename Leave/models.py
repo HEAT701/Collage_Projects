@@ -1,4 +1,5 @@
 from django.db import models
+from Employee.models import Employee
 from django.core.exceptions import ValidationError
 from Employee.models import BusinessProfile
 class Leave(models.Model):
@@ -16,7 +17,7 @@ class Leave(models.Model):
     )
 
     employee = models.ForeignKey(
-        'Employee.Employee',
+        Employee,
         on_delete=models.CASCADE,
         related_name='leaves'
     )

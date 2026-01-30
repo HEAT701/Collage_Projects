@@ -61,7 +61,7 @@ def Create_Employeeview(request):
         employee.job = job
         employee.save()
         messages.success(request, 'Employee created successfully.')
-        return redirect('dashboard')
+        return redirect('Dashboard:employee_dashboard')
 
     # ✅ Correct filtering (NEW model design)
     departments = Department.objects.filter(
@@ -108,5 +108,5 @@ def Owner_register(request):
         )
         owner.business_profile = business
         owner.save()
-        return redirect('dashboard')
+        return redirect('Home')
     return render(request, 'Owner_register.html')

@@ -41,14 +41,14 @@
                 </div>
                 <div class="text-2xl font-black text-slate-800 tracking-tighter">EMS<span class="text-indigo-600">PRO.</span></div>
             </div>
-            
+            <span class="text-sm font-extrabold text-slate-800">{{ request.user.business_profile.business_name}}</span>
             <div class="flex items-center gap-6">
                 <div class="hidden md:flex flex-col text-right">
-                    <span class="text-sm font-extrabold text-slate-800">Rahul Verma</span>
-                    <span class="text-[10px] font-bold text-indigo-500 uppercase">Product Designer</span>
+                    <span class="text-sm font-extrabold text-slate-800">{{request.user.first_name}} {{request.user.last_name}}</span>
+                    <span class="text-[10px] font-bold text-indigo-500 uppercase">{{request.user.role}}</span>
                 </div>
                 <div class="relative group">
-                    <img src="https://ui-avatars.com/api/?name=Rahul+Verma&background=4f46e5&color=fff" class="w-12 h-12 rounded-2xl cursor-pointer ring-4 ring-indigo-50 shadow-xl">
+                    <img src="https://ui-avatars.com/api/?name={{request.user.first_name}}+{{request.user.last_name}}&background=4f46e5&color=fff" class="w-12 h-12 rounded-2xl cursor-pointer ring-4 ring-indigo-50 shadow-xl">
                     <div class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-4 border-white rounded-full"></div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                         </button>
                     </div>
                     <div class="mt-10 pt-6 border-t border-slate-100">
-                        <a href="#" class="flex items-center gap-4 p-4 font-bold text-rose-500 hover:bg-rose-50 rounded-2xl transition-all">
+                        <a href="{% url 'Login_App:logout' %}" class="flex items-center gap-4 p-4 font-bold text-rose-500 hover:bg-rose-50 rounded-2xl transition-all">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </a>
                     </div>
@@ -126,22 +126,33 @@
                     <div class="max-w-2xl mx-auto bg-white rounded-[3rem] p-10 shadow-2xl shadow-slate-200 border border-slate-100 relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -mr-16 -mt-16"></div>
                         <h2 class="text-2xl font-black text-slate-800 mb-8">Request Time Off</h2>
-                        <form class="space-y-6">
+                        <form method="POST" action="{% url 'Leave:employee_leave_apply' %}" class="space-y-6">
+                            {% csrf_token %}
                             <div class="grid grid-cols-2 gap-6">
                                 <div class="space-y-2">
                                     <label class="text-xs font-black text-slate-400 uppercase ml-1">From</label>
-                                    <input type="date" class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 ring-indigo-500 outline-none">
+                                    <input type="date" name="start_date" required class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 ring-indigo-500 outline-none">
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-xs font-black text-slate-400 uppercase ml-1">To</label>
-                                    <input type="date" class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 ring-indigo-500 outline-none">
+                                    <input type="date" name="end_date" required class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 ring-indigo-500 outline-none">
                                 </div>
                             </div>
                             <div class="space-y-2">
                                 <label class="text-xs font-black text-slate-400 uppercase ml-1">Reason</label>
-                                <textarea rows="4" class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 ring-indigo-500 outline-none" placeholder="I am not feeling well..."></textarea>
+                                <textarea name="reason" rows="4" required class="w-full p-4 bg-slate-50 rounded-2xl border-none focus:ring-2 ring-indigo-500 outline-none" placeholder="I am not feeling well..."></textarea>
                             </div>
-                            <button class="w-full bg-indigo-600 text-white p-5 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-indigo-100">Submit Application</button>
+                            <div class="space-y-2">
+                                <label class="text-xs font-black text-slate-400 uppercase ml-1">Type of Leave</label>
+                                <select name="leave_type">
+                                    {% for lt in leave_types %}
+                                        <option value="{{ lt }}">{{ lt }}</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                            <button type="submit" class="w-full bg-indigo-600 text-white p-5 rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-lg shadow-indigo-100">
+                                Submit Application
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -151,9 +162,9 @@
                         <div class="h-32 bg-gradient-to-r from-indigo-500 to-purple-600"></div>
                         <div class="px-10 pb-10 -mt-16">
                             <div class="flex flex-col md:flex-row items-end gap-6 mb-8">
-                                <img src="https://ui-avatars.com/api/?name=Rahul+Verma&size=256&background=fff&color=4f46e5" class="w-32 h-32 rounded-[2rem] border-8 border-white shadow-lg">
+                                <img src="https://ui-avatars.com/api/?name={{request.user.first_name}}+{{request.user.last_name}}&size=256&background=fff&color=4f46e5" class="w-32 h-32 rounded-[2rem] border-8 border-white shadow-lg">
                                 <div class="flex-1 pb-2">
-                                    <h1 class="text-3xl font-black text-slate-800">Rahul Verma</h1>
+                                    <h1 class="text-3xl font-black text-slate-800">{{request.user.first_name}} {{request.user.last_name}}</h1>
                                     <p class="text-slate-400 font-bold">Member of Engineering Team</p>
                                 </div>
                                 <button class="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm mb-2">Edit Profile</button>
@@ -163,14 +174,14 @@
                                     <i class="fas fa-envelope text-indigo-500"></i>
                                     <div>
                                         <p class="text-[10px] text-slate-400 uppercase font-bold">Official Email</p>
-                                        <p class="font-bold text-sm text-slate-700">rahul.v@emspro.com</p>
+                                        <p class="font-bold text-sm text-slate-700">{{request.user.email}}</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50">
                                     <i class="fas fa-calendar-day text-indigo-500"></i>
                                     <div>
                                         <p class="text-[10px] text-slate-400 uppercase font-bold">Joined Date</p>
-                                        <p class="font-bold text-sm text-slate-700">12 Oct 2024</p>
+                                        <p class="font-bold text-sm text-slate-700">{{request.user.date_joined}}</p>
                                     </div>
                                 </div>
                             </div>
