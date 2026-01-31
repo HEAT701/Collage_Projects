@@ -1,3 +1,4 @@
+from datetime import date, datetime
 from django.db import models
 from django.core.exceptions import ValidationError
 from Employee.models import BusinessProfile,Employee
@@ -43,6 +44,11 @@ class Attendance(models.Model):
             raise ValidationError(
                 "Employee must belong to the same business as attendance record"
             )
-
+        
+    def Total_hours(self):
+        if self.check_in and self.check_out:
+            delta = datetime.combine(date.min, self.check_out) - datetime.combine(date.min, self.check_in)
+            return delta
+        return None
     def __str__(self):
         return f"{self.employee.username} - {self.date}"

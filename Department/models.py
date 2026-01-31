@@ -12,5 +12,8 @@ class Department(models.Model):
         related_name='departments'
     )
 
+    def Total_employees(self):
+        return self.employees.count()
+
     def __str__(self):
         return self.name

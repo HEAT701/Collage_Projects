@@ -13,11 +13,12 @@ def Get_Employee_view(request):
 def count_employee_view(request):
     employee_count = Employee.objects.filter(business_profile=request.user.business_profile, role='employee', is_active=True).count()
     return employee_count
-'''
-def Resent_Added_Employee_view(request):
-    recent_employees = Employee.objects.filter(roal='employee', is_active=True).order_by('-date_joined')[:5]
-    return recent_employees
-'''
+
+def get_recent_added_employees(user):
+    return Employee.objects.filter(
+        business_profile=user.business_profile,
+        role='employee'
+    ).order_by('-date_joined')[:3]
 
 
 
@@ -26,7 +27,7 @@ def Resent_Added_Employee_view(request):
 from Department.models import Department
 
 def fiend_Total_deparment(request):
-    total_departments = Department.objects.filter(business_profile=request.user.business_profile).count()
+    total_departments = Department.objects.filter(business_profile=request.user.business_profile)
     return total_departments
 
 
@@ -40,7 +41,7 @@ from django.utils import timezone
 
 def today_attendance_view(request):
     today = timezone.now().date()
-    today_attendance = Attendance.objects.filter(date=today).count()
+    today_attendance = Attendance.objects.filter(business_profile=request.user.business_profile, date=today)
     return today_attendance
 
 
@@ -52,4 +53,5 @@ from Leave.models import Leave
 def Get_pending_leave_view(request):
     pending_leaves = Leave.objects.filter(status='pending', business_profile=request.user.business_profile)
     return pending_leaves
+
 
