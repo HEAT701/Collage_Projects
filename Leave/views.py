@@ -18,17 +18,18 @@ def Leave_view(request):
 
 # Manage Leave Request 
 
-def leave_Management_view(request, leave_id, action):
-    try:
-        leave_request = Leave.objects.get(leave_id=leave_id)
-        if action == 'approve':
-            leave_request.status = 'APPROVED'
-        elif action == 'reject':
-            leave_request.status = 'REJECTED'
-        leave_request.save()
-        return True
-    except Leave.DoesNotExist:
-        return False
+def manage_leave(request, leave_id, action):
+    leave = Leave.objects.get(pk=leave_id)
+
+    if action == 'approve':
+        leave.status = 'approved'
+        leave.approved_by = request.user
+    elif action == 'reject':
+        leave.status = 'rejected'
+
+    leave.save()
+    return redirect('Dashboard:dashboard_view')
+
 
 
 

@@ -16,9 +16,11 @@ class Attendance(models.Model):
     )
 
     business_profile = models.ForeignKey(
-        BusinessProfile,
+        'Employee.BusinessProfile',
         on_delete=models.CASCADE,
-        related_name='attendance'
+        related_name='attendance',
+        null=True,
+        blank=True
     )
 
     date = models.DateField()
@@ -40,11 +42,17 @@ class Attendance(models.Model):
             if self.check_out < self.check_in:
                 raise ValidationError("Check-out time cannot be before check-in")
 
-        if self.employee.business_profile != self.business_profile:
-            raise ValidationError(
-                "Employee must belong to the same business as attendance record"
-            )
-        
+        if self.employee_id and self.business_profile_id:
+            if self.employee.business_profile_id != self.business_profile_id:
+                raise ValidationError(
+                    "Employee must belong to the same business as attendance record"
+                )
+            
+    def save(self, *args, **kwargs):
+        if not self.business_profile and self.employee:
+            self.business_profile = self.employee.business_profile
+        super().save(*args, **kwargs)
+
     def Total_hours(self):
         if self.check_in and self.check_out:
             delta = datetime.combine(date.min, self.check_out) - datetime.combine(date.min, self.check_in)

@@ -4,20 +4,25 @@ from .forms import AttendanceForm
 from .models import Attendance
 
 # Create your views here.
-def Attendance_view(request):
+def attendance_create(request):
     if request.method == 'POST':
         form = AttendanceForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('Home')
-    contex ={
-        'form': AttendanceForm
-    }
-    return render(request, 'Attendance.html', contex)
+            attendance = form.save(commit=False)
+
+            # 🔥 Assign business from logged-in user
+            attendance.business_profile = request.user.business_profile
+            attendance.save()
+
+            return redirect('Dashboard:dashboard_view')  # change as needed
+    else:
+        form = AttendanceForm()
+
+    return render(request, 'Attendance.html', {'form': form})
 
 
 
-# get all the attendance records
+
 def Attendance_list_view(request):
     attendance_records = Attendance.objects.all()
     context = {

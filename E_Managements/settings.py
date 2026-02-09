@@ -128,3 +128,12 @@ STATIC_URL = 'static/'
 AUTH_USER_MODEL = 'Employee.Employee'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# add time zone and language code
+TIME_ZONE = 'Asia/Kolkata'
+USE_TZ = True
+LANGUAGE_CODE = 'en-us'
+USE_I18N = True
+USE_L10N = True

@@ -1,11 +1,11 @@
 from django.db import models
-from Employee.models import BusinessProfile,Employee
+from Employee.models import Employee
 class Project(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
 
     business_profile = models.ForeignKey(
-        BusinessProfile,
+       'Employee.BusinessProfile',
         on_delete=models.CASCADE,
         related_name='projects'
     )

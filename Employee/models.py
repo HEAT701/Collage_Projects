@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.timezone import now
+from Department.models import Department
+from Role.models import Job
 
 class BusinessProfile(models.Model):
     business_name = models.CharField(max_length=100)
@@ -10,7 +12,6 @@ class BusinessProfile(models.Model):
 
     def __str__(self):
         return self.business_name
-
 
 class Employee(AbstractUser):
     ROLE_CHOICES = (
@@ -36,6 +37,22 @@ class Employee(AbstractUser):
         decimal_places=2,
         null=True,
         blank=True
+    )
+
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='employees'
+    )
+
+    job = models.ForeignKey(
+        Job,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='employees'
     )
 
     manager = models.ForeignKey(

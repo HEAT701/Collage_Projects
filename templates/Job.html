@@ -3,14 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job form</title>
+    <title>Post New Job | EMS PRO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.01em; }
+        
+        .glass-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.3); }
+        
+        /* Premium Input Styling for Django Form */
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background-color: #F1F5F9;
+            border: 2px solid transparent;
+            border-radius: 1.25rem;
+            font-weight: 600;
+            color: #1E293B;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            background-color: #fff;
+            border-color: #6366f1;
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.1);
+            outline: none;
+        }
+        label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94A3B8;
+            margin-bottom: 0.6rem;
+            display: block;
+            margin-left: 0.5rem;
+        }
+        .form-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 3rem;
+            border: 1px solid #F1F5F9;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.02);
+        }
+    </style>
 </head>
-<body>
-    <h1>Job form</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Submit</button>
-    </form>
+<body class="bg-[#F8FAFC] text-slate-900 overflow-x-hidden">
+
+    <nav class="fixed w-full z-50 px-6 py-4 glass-nav">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="text-xl font-black text-slate-800 tracking-tighter italic">EMS<span class="text-indigo-600">PRO.</span></div>
+            </div>
+            <button onclick="history.back()" class="text-sm font-bold text-slate-400 hover:text-indigo-600 transition-all flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </button>
+        </div>
+    </nav>
+
+    <main class="relative pt-32 pb-20 px-6">
+        <div class="max-w-3xl mx-auto">
+            
+            <div class="mb-10 ml-2">
+                <span class="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-widest">
+                    Recruitment Module
+                </span>
+                <h1 class="text-4xl font-extrabold tracking-tight mt-4 text-slate-900">
+                    Create <span class="text-indigo-600 text-italic">New Vacancy</span>
+                </h1>
+                <p class="text-slate-500 mt-2 font-medium">Fill in the details to post a new job opening on the portal.</p>
+            </div>
+
+            <div class="form-card relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 opacity-[0.03] pointer-events-none">
+                    <i class="fas fa-bullhorn text-[15rem]"></i>
+                </div>
+
+                <form method="post" class="space-y-8 relative z-10">
+                    {% csrf_token %}
+
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-2 h-2 bg-indigo-600 rounded-full"></span>
+                            <h3 class="text-sm font-black text-slate-800 uppercase tracking-widest">Job Identity</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="space-y-1">
+                                <label>Job Title / Position</label>
+                                {{ form.title }}
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-1">
+                                    <label>Assign to Department</label>
+                                    {{ form.department }}
+                                </div>
+                                <div class="space-y-1">
+                                    <label>Employment Type</label>
+                                    {{ form.job_type }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 pt-6 border-t border-slate-50">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                            <h3 class="text-sm font-black text-slate-800 uppercase tracking-widest">Offer & Requirements</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-1">
+                                <label>Salary Package (Monthly/Annual)</label>
+                                <div class="relative group">
+                                    <span class="absolute left-4 top-4 font-bold text-slate-400 group-focus-within:text-indigo-600 transition-colors">₹</span>
+                                    <div class="[&>input]:pl-10"> {{ form.salary_range }} </div>
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <label>Work Location</label>
+                                <div class="relative group">
+                                    <i class="fas fa-map-marker-alt absolute left-4 top-4 text-slate-300 group-focus-within:text-indigo-600 transition-colors"></i>
+                                    <div class="[&>input]:pl-10"> {{ form.location }} </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label>Job Description & Responsibilities</label>
+                            <div class="[&>textarea]:h-40 [&>textarea]:resize-none">
+                                {{ form.description }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 flex flex-col md:flex-row gap-4">
+                        <button type="submit" class="flex-1 bg-indigo-600 text-white p-5 rounded-2xl font-bold hover:bg-slate-900 transition-all shadow-xl shadow-indigo-100 active:scale-95 flex items-center justify-center gap-2">
+                            <i class="fas fa-paper-plane"></i> Publish Job Vacancy
+                        </button>
+                        <button type="button" onclick="history.back()" class="bg-white border border-slate-200 text-slate-500 px-8 py-5 rounded-2xl font-bold hover:bg-slate-50 transition-all">
+                            Save Draft
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[120px] -z-10"></div>
+    <div class="fixed bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-emerald-100/30 rounded-full blur-[100px] -z-10"></div>
+
 </body>
 </html>

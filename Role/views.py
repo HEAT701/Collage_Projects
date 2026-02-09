@@ -7,7 +7,9 @@ def Job_view(request):
     if request.method == 'POST':
         form = JobForm(request.POST)
         if form.is_valid():
-            form.save()
+            job = form.save(commit=False)
+            job.business_profile = request.user.business_profile
+            job.save()
             return redirect('Dashboard:dashboard_view')
     else:
         form = JobForm()

@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from decimal import Decimal
 from django.contrib import messages
 from django.db import IntegrityError
+from .forms import EmployeeUpdateForm
 
 
 def Create_Employeeview(request):
@@ -40,7 +41,7 @@ def Create_Employeeview(request):
         
         if Employee.objects.filter(email=email).exists():
             messages.error(request, 'An employee with this email already exists.')
-            return redirect('create_employee')
+            return redirect('Employee:create_employee')
         try:
             employee = Employee.objects.create_user(
                 username = email,
@@ -51,7 +52,7 @@ def Create_Employeeview(request):
             )
         except IntegrityError :
             messages.error(request, 'An employee with this username already exists.')
-            return redirect('create_employee')
+            return redirect('Employee:create_employee')
         employee.phone = phone
         employee.hire_date = hire_date
         employee.salary = salary
@@ -61,7 +62,7 @@ def Create_Employeeview(request):
         employee.job = job
         employee.save()
         messages.success(request, 'Employee created successfully.')
-        return redirect('Dashboard:employee_dashboard')
+        return redirect('Dashboard:dashboard_view')
 
     # ✅ Correct filtering (NEW model design)
     departments = Department.objects.filter(
@@ -110,3 +111,72 @@ def Owner_register(request):
         owner.save()
         return redirect('Home')
     return render(request, 'Owner_register.html')
+
+
+
+
+def Employee_Detail_view(request, employee_id):
+    employee = Employee.objects.get(id=employee_id)
+    context = {
+        'employee': employee
+    }
+    return render(request, 'Employee_Detail.html', context)
+
+def Employee_Delete_view(request, employee_id):
+    employee = Employee.objects.get(id=employee_id)
+    employee.delete()
+    messages.success(request, 'Employee deleted successfully.')
+    return redirect('Dashboard:dashboard_view')
+
+
+def Employee_Update_view(request, employee_id):
+    employee = Employee.objects.get(id=employee_id)
+    business = request.user.business_profile
+
+    if request.method == 'POST':
+        form = EmployeeUpdateForm(request.POST, instance=employee)
+        if form.is_valid():
+            employee = form.save(commit=False)
+            
+            job_id = request.POST.get('job')
+            department_id = request.POST.get('department')
+
+            # Filter department and job by business profile for security
+            if department_id:
+                employee.department = Department.objects.filter(
+                    id=department_id,
+                    business_profile=business
+                ).first()
+
+            if job_id:
+                employee.job = Job.objects.filter(
+                    id=job_id,
+                    business_profile=business
+                ).first()
+
+            employee.save()
+            messages.success(request, 'Employee updated successfully.')
+            return redirect('Employee:employee_detail', employee_id=employee.id)
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = EmployeeUpdateForm(instance=employee)
+
+    # Filter departments and jobs by business profile
+    departments = Department.objects.filter(
+        business_profile=business
+    )
+
+    jobs = Job.objects.filter(
+        business_profile=business
+    )
+
+    # Update form querysets to show only business-specific options
+    form.fields['department'].queryset = departments
+    form.fields['job'].queryset = jobs
+
+    context = {
+        'form': form,
+        'employee': employee,
+    }
+    return render(request, 'Employee_Update.html', context)

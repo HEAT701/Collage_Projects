@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Leave_view,leave_Management_view,Employee_leave_apply_view
+from .views import Leave_view,manage_leave as leave_Management_view,Employee_leave_apply_view
 app_name = 'Leave'
 urlpatterns =[
     path('Leave/', Leave_view, name='Leave'),

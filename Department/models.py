@@ -1,5 +1,4 @@
 from django.db import models
-from Employee.models import BusinessProfile
 
 
 class Department(models.Model):
@@ -7,13 +6,12 @@ class Department(models.Model):
     description = models.TextField(blank=True)
 
     business_profile = models.ForeignKey(
-        BusinessProfile,
+        'Employee.BusinessProfile',
         on_delete=models.CASCADE,
         related_name='departments'
     )
-
-    def Total_employees(self):
+    def total_employees(self):
         return self.employees.count()
-
+    
     def __str__(self):
         return self.name

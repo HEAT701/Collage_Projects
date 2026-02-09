@@ -1,10 +1,9 @@
 from django.db import models
-from Employee.models import BusinessProfile
 class Job(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     business_profile = models.ForeignKey(
-        BusinessProfile,
+        'Employee.BusinessProfile',
         on_delete=models.CASCADE,
         related_name='jobs'
     )

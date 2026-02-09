@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Details | EMS PRO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-effect { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-slate-900 overflow-x-hidden">
+
+    <nav class="fixed w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass-effect p-4 rounded-3xl border border-white/20 shadow-sm">
+            <div class="text-2xl font-black text-indigo-600 tracking-tighter italic">
+                EMS<span class="text-slate-900">PRO.</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition">Dashboard</a>
+                <button class="bg-slate-900 text-white px-5 py-2 rounded-xl font-bold text-sm hover:bg-indigo-600 transition-all">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative pt-32 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+                <div>
+                    <span class="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-widest">
+                        Department Overview
+                    </span>
+                    <h1 class="text-5xl font-extrabold tracking-tight mt-4">
+                        {{ department.name }}
+                    </h1>
+                </div>
+                <div class="flex gap-3">
+                    <button class="bg-white border border-slate-200 px-6 py-3 rounded-2xl font-bold text-slate-600 hover:bg-slate-50 transition-all flex items-center gap-2">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <a href="{% url 'Department:delete_department' department.id %}" 
+                       onclick="return confirm('Are you sure you want to delete this department?')"
+                       class="bg-red-50 text-red-600 px-6 py-3 rounded-2xl font-bold hover:bg-red-600 hover:text-white transition-all flex items-center gap-2">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 md:p-12 rounded-[3rem] border border-slate-100 shadow-2xl shadow-indigo-100/50">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
+                    <div class="space-y-8">
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Department ID</label>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600">
+                                    <i class="fas fa-fingerprint"></i>
+                                </div>
+                                <span class="text-xl font-bold text-slate-700">#{{ department.id }}</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Total Workforce</label>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center text-emerald-600">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <span class="text-xl font-bold text-slate-700">{{ department.total_employees }} Employees</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                        <label class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-3">About Department</label>
+                        <p class="text-slate-600 leading-relaxed italic">
+                            "{{ department.description|default:'No description available for this department.' }}"
+                        </p>
+                    </div>
+
+                </div>
+
+                <hr class="my-10 border-slate-100">
+
+                <div class="flex justify-between items-center">
+                    <a href="javascript:history.back()" class="text-indigo-600 font-bold hover:underline flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                    <span class="text-slate-400 text-sm italic">Last updated: Just now</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-100/50 rounded-full blur-[120px] -z-10"></div>
+    <div class="fixed bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-emerald-100/40 rounded-full blur-[100px] -z-10"></div>
+
+</body>
+</html>
