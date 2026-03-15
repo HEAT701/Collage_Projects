@@ -51,7 +51,7 @@ def Create_Employeeview(request):
                 last_name=last_name,
             )
         except IntegrityError :
-            messages.error(request, 'An employee with this username already exists.')
+            messages.error(request, 'An employee with this username already exists.plz login')
             return redirect('Employee:create_employee')
         employee.phone = phone
         employee.hire_date = hire_date
