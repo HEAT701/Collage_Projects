@@ -1,0 +1,203 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 3 /Kids [ 5 0 R 7 0 R 9 0 R ] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 2715 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(# HTML Function Audit ? Main Code Extract) Tj
+0 -12 Td () Tj
+0 -12 Td (Is document me templates ke andar jo functional JavaScript logic add hai, uska **main code ) Tj
+0 -12 Td (extract** diya gaya hai.) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Scope Checked) Tj
+0 -12 Td () Tj
+0 -12 Td (- `templates/dashboard.html`) Tj
+0 -12 Td (- `templates/Department.html`) Tj
+0 -12 Td (- `templates/Employee_Dashboard.html`) Tj
+0 -12 Td (- `templates/Create_Employee.html`) Tj
+0 -12 Td (- Inline handlers in other templates \(`onclick="history.back\(\)"`, confirm dialogs, etc.\)) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 1\) `dashboard.html` ? Sidebar tab switching) Tj
+0 -12 Td () Tj
+0 -12 Td (**Location:** `templates/dashboard.html:329-354`) Tj
+0 -12 Td () Tj
+0 -12 Td (```html) Tj
+0 -12 Td (<script>) Tj
+0 -12 Td (    function showTab\(element, tabId\) {) Tj
+0 -12 Td (        // 1. Sidebar Links Reset) Tj
+0 -12 Td (        document.querySelectorAll\('.sidebar-link'\).forEach\(link => {) Tj
+0 -12 Td (            link.classList.remove\('active'\);) Tj
+0 -12 Td (            link.classList.add\('text-slate-400'\);) Tj
+0 -12 Td (        }\);) Tj
+0 -12 Td () Tj
+0 -12 Td (        // 2. Active Sidebar Styling) Tj
+0 -12 Td (        element.classList.add\('active'\);) Tj
+0 -12 Td (        element.classList.remove\('text-slate-400'\);) Tj
+0 -12 Td () Tj
+0 -12 Td (        // 3. Tab Switching Logic) Tj
+0 -12 Td (        document.querySelectorAll\('.tab-content'\).forEach\(tab => {) Tj
+0 -12 Td (            tab.classList.remove\('active'\);) Tj
+0 -12 Td (        }\);) Tj
+0 -12 Td (        const targetTab = document.getElementById\(tabId\);) Tj
+0 -12 Td (        if \(targetTab\) {) Tj
+0 -12 Td (            targetTab.classList.add\('active'\);) Tj
+0 -12 Td (        }) Tj
+0 -12 Td () Tj
+0 -12 Td (        // 4. Update Header Title) Tj
+0 -12 Td (        const tabName = element.innerText.trim\(\);) Tj
+0 -12 Td (        document.getElementById\('tab-title'\).innerText = tabName;) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (</script>) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 2\) `Department.html` ? Department form toggle) Tj
+0 -12 Td () Tj
+0 -12 Td (**Location:** `templates/Department.html:139-149`) Tj
+0 -12 Td () Tj
+0 -12 Td (```html) Tj
+0 -12 Td (<script>) Tj
+0 -12 Td (    function toggleForm\(\) {) Tj
+0 -12 Td (        const form = document.getElementById\('addDeptForm'\);) Tj
+0 -12 Td (        if \(form.classList.contains\('hidden'\)\) {) Tj
+0 -12 Td (            form.classList.remove\('hidden'\);) Tj
+0 -12 Td (            form.scrollIntoView\({ behavior: 'smooth' }\);) Tj
+0 -12 Td (        } else {) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 2941 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(            form.classList.add\('hidden'\);) Tj
+0 -12 Td (        }) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (</script>) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 3\) `Employee_Dashboard.html` ? Employee tab switching) Tj
+0 -12 Td () Tj
+0 -12 Td (**Location:** `templates/Employee_Dashboard.html:196-203`) Tj
+0 -12 Td () Tj
+0 -12 Td (```html) Tj
+0 -12 Td (<script>) Tj
+0 -12 Td (    function switchTab\(tabId, element\) {) Tj
+0 -12 Td (        document.querySelectorAll\('button'\).forEach\(btn => btn.classList.remove\('active-link'\)\);) Tj
+0 -12 Td (        element.classList.add\('active-link'\);) Tj
+0 -12 Td (        document.querySelectorAll\('.tab-content'\).forEach\(tab => ) Tj
+0 -12 Td (tab.classList.remove\('active'\)\);) Tj
+0 -12 Td (        document.getElementById\(tabId\).classList.add\('active'\);) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (</script>) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 4\) `Create_Employee.html` ? Form progress state logic) Tj
+0 -12 Td () Tj
+0 -12 Td (**Location:** `templates/Create_Employee.html:206-216`) Tj
+0 -12 Td () Tj
+0 -12 Td (```html) Tj
+0 -12 Td (<script>) Tj
+0 -12 Td (    const form = document.getElementById\('employeeForm'\);) Tj
+0 -12 Td (    const progressBar = document.getElementById\('progressBar'\);) Tj
+0 -12 Td () Tj
+0 -12 Td (    form.addEventListener\('focusin', \(e\) => {) Tj
+0 -12 Td (        const name = e.target.name;) Tj
+0 -12 Td (        if \(['first_name', 'last_name', 'email'].includes\(name\)\) progressBar.style.width = ) Tj
+0 -12 Td ('35%';) Tj
+0 -12 Td (        else if \(['department', 'job', 'hire_date'].includes\(name\)\) progressBar.style.width = ) Tj
+0 -12 Td ('70%';) Tj
+0 -12 Td (        else if \(['salary', 'phone'].includes\(name\)\) progressBar.style.width = '90%';) Tj
+0 -12 Td (    }\);) Tj
+0 -12 Td (</script>) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 5\) Other inline functional handlers \(quick list\)) Tj
+0 -12 Td () Tj
+0 -12 Td (### Navigation / tab actions) Tj
+0 -12 Td (- `templates/dashboard.html`: multiple `onclick="showTab\(this, '...'\)"` bindings for sidebar ) Tj
+0 -12 Td (tabs.) Tj
+0 -12 Td (- `templates/Employee_Dashboard.html`: buttons use `onclick="switchTab\('...', this\)"`.) Tj
+0 -12 Td (- `templates/Department.html`: button uses `onclick="toggleForm\(\)"`.) Tj
+0 -12 Td () Tj
+0 -12 Td (### Browser back handlers) Tj
+0 -12 Td (- `templates/Job.html`: `onclick="history.back\(\)"`) Tj
+0 -12 Td (- `templates/Employee_Update.html`: `onclick="history.back\(\)"`) Tj
+0 -12 Td (- `templates/Create_Employee.html`: `onclick="window.history.back\(\)"`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Confirm handlers) Tj
+0 -12 Td (- `templates/dashboard.html`: delete action with `onclick="return confirm\('Are you sure?'\)"`) Tj
+0 -12 Td (- `templates/Department_Detail.html`: delete link with confirmation.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 505 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+() Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Final Note) Tj
+0 -12 Td () Tj
+0 -12 Td (Aapke HTML me core custom functions mainly ye 3 declared functions hain:) Tj
+0 -12 Td (1. `showTab\(...\)`) Tj
+0 -12 Td (2. `toggleForm\(...\)`) Tj
+0 -12 Td (3. `switchTab\(...\)`) Tj
+0 -12 Td () Tj
+0 -12 Td (Aur `Create_Employee.html` me ek functional event-listener based logic hai \(`focusin` progress ) Tj
+0 -12 Td (update\), jisko upar main code ke roop me include kiya gaya hai.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000129 00000 n 
+0000000197 00000 n 
+0000002964 00000 n 
+0000003090 00000 n 
+0000006083 00000 n 
+0000006209 00000 n 
+0000006765 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+6891
+%%EOF

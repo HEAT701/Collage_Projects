@@ -1,0 +1,937 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 12 /Kids [ 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R ] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 2464 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+(# Function Code Documentation \(All Apps\)) Tj
+0 -12 Td () Tj
+0 -12 Td (This document lists function/method definitions found in the repository apps, along with ) Tj
+0 -12 Td (location, signature, and code snippet.) Tj
+0 -12 Td () Tj
+0 -12 Td (## Apps Covered) Tj
+0 -12 Td () Tj
+0 -12 Td (- **Employee**: 9 functions/methods) Tj
+0 -12 Td (- **Department**: 5 functions/methods) Tj
+0 -12 Td (- **Role**: 2 functions/methods) Tj
+0 -12 Td (- **Project**: 2 functions/methods) Tj
+0 -12 Td (- **Leave**: 5 functions/methods) Tj
+0 -12 Td (- **Attendance**: 7 functions/methods) Tj
+0 -12 Td (- **Dashboard**: 7 functions/methods) Tj
+0 -12 Td (- **Login_App**: 2 functions/methods) Tj
+0 -12 Td (- **E_Managements**: 1 functions/methods) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Employee App) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Employee/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `BusinessProfile.__str__` \(method\)) Tj
+0 -12 Td (- **Signature:** `__str__\(self\)`) Tj
+0 -12 Td (- **Location:** `Employee/models.py:13-14`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def __str__\(self\):) Tj
+0 -12 Td (        return self.business_name) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `Employee.__str__` \(method\)) Tj
+0 -12 Td (- **Signature:** `__str__\(self\)`) Tj
+0 -12 Td (- **Location:** `Employee/models.py:66-67`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def __str__\(self\):) Tj
+0 -12 Td (        return self.username) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Employee/servies.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Get_Employee_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Get_Employee_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Employee/servies.py:7-9`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Get_Employee_view\(request\):) Tj
+0 -12 Td (   get_Enployee = Employee.objects.filter\(roal='employee', is_active=True\)) Tj
+0 -12 Td (   return get_Enployee) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Employee/views.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Create_Employeeview` \(function\)) Tj
+0 -12 Td (- **Signature:** `Create_Employeeview\(request\)`) Tj
+0 -12 Td (- **Location:** `Employee/views.py:15-79`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Create_Employeeview\(request\):) Tj
+0 -12 Td (    business = request.user.business_profile) Tj
+0 -12 Td () Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 3015 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+(    if request.method == 'POST':) Tj
+0 -12 Td (        first_name = request.POST.get\('first_name'\)) Tj
+0 -12 Td (        last_name = request.POST.get\('last_name'\)) Tj
+0 -12 Td (        email = request.POST.get\('email'\)) Tj
+0 -12 Td (        phone = request.POST.get\('phone'\)) Tj
+0 -12 Td (        hire_date = request.POST.get\('hire_date'\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        salary = request.POST.get\('salary'\)) Tj
+0 -12 Td (        salary = Decimal\(salary\) if salary else None) Tj
+0 -12 Td () Tj
+0 -12 Td (        job_id = request.POST.get\('job'\)) Tj
+0 -12 Td (        department_id = request.POST.get\('department'\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        department = Department.objects.filter\() Tj
+0 -12 Td (            id=department_id,) Tj
+0 -12 Td (            business_profile=business) Tj
+0 -12 Td (        \).first\(\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        job = Job.objects.filter\() Tj
+0 -12 Td (            id=job_id,) Tj
+0 -12 Td (            business_profile=business) Tj
+0 -12 Td (        \).first\(\)) Tj
+0 -12 Td () Tj
+0 -12 Td () Tj
+0 -12 Td (        if Employee.objects.filter\(email=email\).exists\(\):) Tj
+0 -12 Td (            messages.error\(request, 'An employee with this email already exists.'\)) Tj
+0 -12 Td (            return redirect\('Employee:create_employee'\)) Tj
+0 -12 Td (        try:) Tj
+0 -12 Td (            employee = Employee.objects.create_user\() Tj
+0 -12 Td (                username = email,) Tj
+0 -12 Td (                email=email,) Tj
+0 -12 Td (                password='Test@1234',) Tj
+0 -12 Td (                first_name=first_name,) Tj
+0 -12 Td (                last_name=last_name,) Tj
+0 -12 Td (            \)) Tj
+0 -12 Td (        except IntegrityError :) Tj
+0 -12 Td (            messages.error\(request, 'An employee with this username already exists.'\)) Tj
+0 -12 Td (            return redirect\('Employee:create_employee'\)) Tj
+0 -12 Td (        employee.phone = phone) Tj
+0 -12 Td (        employee.hire_date = hire_date) Tj
+0 -12 Td (        employee.salary = salary) Tj
+0 -12 Td (        employee.business_profile = business) Tj
+0 -12 Td (        employee.role = 'employee') Tj
+0 -12 Td (        employee.department = department) Tj
+0 -12 Td (        employee.job = job) Tj
+0 -12 Td (        employee.save\(\)) Tj
+0 -12 Td (        messages.success\(request, 'Employee created successfully.'\)) Tj
+0 -12 Td (        return redirect\('Dashboard:dashboard_view'\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    # ? Correct filtering \(NEW model design\)) Tj
+0 -12 Td (    departments = Department.objects.filter\() Tj
+0 -12 Td (        business_profile=business) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    jobs = Job.objects.filter\() Tj
+0 -12 Td (        business_profile=business) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    return render\(request, 'Create_Employee.html', {) Tj
+0 -12 Td (        'departments': departments,) Tj
+0 -12 Td (        'jobs': jobs) Tj
+0 -12 Td (    }\)) Tj
+0 -12 Td (```) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 3044 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+() Tj
+0 -12 Td (#### 2. `Employee_List_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Employee_List_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Employee/views.py:82-87`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Employee_List_view\(request\):) Tj
+0 -12 Td (    Employees = Get_Employee_view\(request\)) Tj
+0 -12 Td (    context = {) Tj
+0 -12 Td (        'Employees': Employees) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (    return render\(request, 'Employee_Dashboard.html', context\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 3. `Owner_register` \(function\)) Tj
+0 -12 Td (- **Signature:** `Owner_register\(request\)`) Tj
+0 -12 Td (- **Location:** `Employee/views.py:93-113`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Owner_register\(request\):) Tj
+0 -12 Td (    if request.method == 'POST':) Tj
+0 -12 Td (        owner = Employee.objects.create_user\() Tj
+0 -12 Td (            first_name=request.POST.get\('first_name'\),) Tj
+0 -12 Td (            last_name=request.POST.get\('last_name'\),) Tj
+0 -12 Td (            email=request.POST.get\('email'\),) Tj
+0 -12 Td (            phone=request.POST.get\('phone'\),) Tj
+0 -12 Td (            role='owner',) Tj
+0 -12 Td (            username=request.POST.get\('username'\),) Tj
+0 -12 Td (            password=request.POST.get\('password'\),) Tj
+0 -12 Td (        \)) Tj
+0 -12 Td (        business = BusinessProfile.objects.create\() Tj
+0 -12 Td (            business_name=request.POST.get\('business_name'\),) Tj
+0 -12 Td (            business_address=request.POST.get\('business_address'\),) Tj
+0 -12 Td (            business_phone=request.POST.get\('business_phone'\),) Tj
+0 -12 Td (            business_email=request.POST.get\('business_email'\),) Tj
+0 -12 Td (        \)) Tj
+0 -12 Td (        owner.business_profile = business) Tj
+0 -12 Td (        owner.save\(\)) Tj
+0 -12 Td (        return redirect\('Home'\)) Tj
+0 -12 Td (    return render\(request, 'Owner_register.html'\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 4. `Employee_Detail_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Employee_Detail_view\(request, employee_id\)`) Tj
+0 -12 Td (- **Location:** `Employee/views.py:118-123`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Employee_Detail_view\(request, employee_id\):) Tj
+0 -12 Td (    employee = Employee.objects.get\(id=employee_id\)) Tj
+0 -12 Td (    context = {) Tj
+0 -12 Td (        'employee': employee) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (    return render\(request, 'Employee_Detail.html', context\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 5. `Employee_Delete_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Employee_Delete_view\(request, employee_id\)`) Tj
+0 -12 Td (- **Location:** `Employee/views.py:125-129`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Employee_Delete_view\(request, employee_id\):) Tj
+0 -12 Td (    employee = Employee.objects.get\(id=employee_id\)) Tj
+0 -12 Td (    employee.delete\(\)) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 2961 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+(    messages.success\(request, 'Employee deleted successfully.'\)) Tj
+0 -12 Td (    return redirect\('Dashboard:dashboard_view'\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 6. `Employee_Update_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Employee_Update_view\(request, employee_id\)`) Tj
+0 -12 Td (- **Location:** `Employee/views.py:132-182`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Employee_Update_view\(request, employee_id\):) Tj
+0 -12 Td (    employee = Employee.objects.get\(id=employee_id\)) Tj
+0 -12 Td (    business = request.user.business_profile) Tj
+0 -12 Td () Tj
+0 -12 Td (    if request.method == 'POST':) Tj
+0 -12 Td (        form = EmployeeUpdateForm\(request.POST, instance=employee\)) Tj
+0 -12 Td (        if form.is_valid\(\):) Tj
+0 -12 Td (            employee = form.save\(commit=False\)) Tj
+0 -12 Td () Tj
+0 -12 Td (            job_id = request.POST.get\('job'\)) Tj
+0 -12 Td (            department_id = request.POST.get\('department'\)) Tj
+0 -12 Td () Tj
+0 -12 Td (            # Filter department and job by business profile for security) Tj
+0 -12 Td (            if department_id:) Tj
+0 -12 Td (                employee.department = Department.objects.filter\() Tj
+0 -12 Td (                    id=department_id,) Tj
+0 -12 Td (                    business_profile=business) Tj
+0 -12 Td (                \).first\(\)) Tj
+0 -12 Td () Tj
+0 -12 Td (            if job_id:) Tj
+0 -12 Td (                employee.job = Job.objects.filter\() Tj
+0 -12 Td (                    id=job_id,) Tj
+0 -12 Td (                    business_profile=business) Tj
+0 -12 Td (                \).first\(\)) Tj
+0 -12 Td () Tj
+0 -12 Td (            employee.save\(\)) Tj
+0 -12 Td (            messages.success\(request, 'Employee updated successfully.'\)) Tj
+0 -12 Td (            return redirect\('Employee:employee_detail', employee_id=employee.id\)) Tj
+0 -12 Td (        else:) Tj
+0 -12 Td (            messages.error\(request, 'Please correct the errors below.'\)) Tj
+0 -12 Td (    else:) Tj
+0 -12 Td (        form = EmployeeUpdateForm\(instance=employee\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    # Filter departments and jobs by business profile) Tj
+0 -12 Td (    departments = Department.objects.filter\() Tj
+0 -12 Td (        business_profile=business) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    jobs = Job.objects.filter\() Tj
+0 -12 Td (        business_profile=business) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    # Update form querysets to show only business-specific options) Tj
+0 -12 Td (    form.fields['department'].queryset = departments) Tj
+0 -12 Td (    form.fields['job'].queryset = jobs) Tj
+0 -12 Td () Tj
+0 -12 Td (    context = {) Tj
+0 -12 Td (        'form': form,) Tj
+0 -12 Td (        'employee': employee,) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (    return render\(request, 'Employee_Update.html', context\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 2656 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+() Tj
+0 -12 Td (## Department App) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Department/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Department.total_employees` \(method\)) Tj
+0 -12 Td (- **Signature:** `total_employees\(self\)`) Tj
+0 -12 Td (- **Location:** `Department/models.py:13-14`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def total_employees\(self\):) Tj
+0 -12 Td (        return self.employees.count\(\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `Department.__str__` \(method\)) Tj
+0 -12 Td (- **Signature:** `__str__\(self\)`) Tj
+0 -12 Td (- **Location:** `Department/models.py:16-17`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def __str__\(self\):) Tj
+0 -12 Td (        return self.name) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Department/views.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Department_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Department_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Department/views.py:7-18`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Department_view\(request\):) Tj
+0 -12 Td (    if request.method == 'POST':) Tj
+0 -12 Td (        form = DepartmentForm\(request.POST\)) Tj
+0 -12 Td (        if form.is_valid\(\):) Tj
+0 -12 Td (            depart = form.save\(commit=False\)) Tj
+0 -12 Td (            depart.business_profile = request.user.business_profile) Tj
+0 -12 Td (            depart.save\(\)) Tj
+0 -12 Td (            return redirect\('Dashboard:dashboard_view'\)) Tj
+0 -12 Td (    context ={) Tj
+0 -12 Td (        'form': DepartmentForm\(\)) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (    return render\(request, 'Department.html',context\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `Department_detail_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Department_detail_view\(request, department_id\)`) Tj
+0 -12 Td (- **Location:** `Department/views.py:23-28`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Department_detail_view\(request, department_id\):) Tj
+0 -12 Td (    department = Department.objects.get\(id=department_id\)) Tj
+0 -12 Td (    context = {) Tj
+0 -12 Td (        'department': department) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (    return render\(request, 'Department_Detail.html', context\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 3. `delete_department` \(function\)) Tj
+0 -12 Td (- **Signature:** `delete_department\(request, department_id\)`) Tj
+0 -12 Td (- **Location:** `Department/views.py:34-38`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def delete_department\(request, department_id\):) Tj
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2292 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+(    department = Department.objects.get\(id=department_id\)) Tj
+0 -12 Td (    department.delete\(\)) Tj
+0 -12 Td (    messages.success\(request, 'Department deleted successfully.'\)) Tj
+0 -12 Td (    return redirect\('Dashboard:dashboard_view'\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Role App) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Role/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Job.__str__` \(method\)) Tj
+0 -12 Td (- **Signature:** `__str__\(self\)`) Tj
+0 -12 Td (- **Location:** `Role/models.py:10-11`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def __str__\(self\):) Tj
+0 -12 Td (        return self.title) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Role/views.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Job_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Job_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Role/views.py:6-19`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Job_view\(request\):) Tj
+0 -12 Td (    if request.method == 'POST':) Tj
+0 -12 Td (        form = JobForm\(request.POST\)) Tj
+0 -12 Td (        if form.is_valid\(\):) Tj
+0 -12 Td (            job = form.save\(commit=False\)) Tj
+0 -12 Td (            job.business_profile = request.user.business_profile) Tj
+0 -12 Td (            job.save\(\)) Tj
+0 -12 Td (            return redirect\('Dashboard:dashboard_view'\)) Tj
+0 -12 Td (    else:) Tj
+0 -12 Td (        form = JobForm\(\)) Tj
+0 -12 Td (    context = {) Tj
+0 -12 Td (        'form': form) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (    return render\(request, 'Job.html',context\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Project App) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Project/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Project.__str__` \(method\)) Tj
+0 -12 Td (- **Signature:** `__str__\(self\)`) Tj
+0 -12 Td (- **Location:** `Project/models.py:22-23`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def __str__\(self\):) Tj
+0 -12 Td (        return self.name) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Project/views.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Project_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Project_view\(request\)`) Tj
+ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 2559 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+(- **Location:** `Project/views.py:7-13`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Project_view\(request\):) Tj
+0 -12 Td (    if request.method == 'POST':) Tj
+0 -12 Td (        form = ProjectForm\(request.POST\)) Tj
+0 -12 Td (        if form.is_valid\(\):) Tj
+0 -12 Td (            form.save\(\)) Tj
+0 -12 Td (            return redirect\('Home'\)) Tj
+0 -12 Td (    return render\(request, 'Project.html', {'form': form}\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Leave App) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Leave/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Leave.clean` \(method\)) Tj
+0 -12 Td (- **Signature:** `clean\(self\)`) Tj
+0 -12 Td (- **Location:** `Leave/models.py:55-62`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def clean\(self\):) Tj
+0 -12 Td (        if self.end_date < self.start_date:) Tj
+0 -12 Td (            raise ValidationError\("End date cannot be before start date"\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        if self.employee.business_profile != self.business_profile:) Tj
+0 -12 Td (            raise ValidationError\() Tj
+0 -12 Td (                "Employee must belong to the same business as the leave") Tj
+0 -12 Td (            \)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `Leave.__str__` \(method\)) Tj
+0 -12 Td (- **Signature:** `__str__\(self\)`) Tj
+0 -12 Td (- **Location:** `Leave/models.py:64-65`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def __str__\(self\):) Tj
+0 -12 Td (        return f"{self.employee.username} \({self.leave_type}\) - {self.start_date} to ) Tj
+0 -12 Td ({self.end_date}") Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Leave/views.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Leave_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Leave_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Leave/views.py:8-16`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Leave_view\(request\):) Tj
+0 -12 Td (    if request.method == 'POST':) Tj
+0 -12 Td (        form = LeaveForm\(request.POST\)) Tj
+0 -12 Td (        if form.is_valid\(\):) Tj
+0 -12 Td (            form.save\(\)) Tj
+0 -12 Td (            return redirect\('Home'\)) Tj
+0 -12 Td (    else:) Tj
+0 -12 Td (        form = LeaveForm\(\)) Tj
+0 -12 Td (    return render\(request, 'Leave.html', {'form': form}\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `manage_leave` \(function\)) Tj
+0 -12 Td (- **Signature:** `manage_leave\(request, leave_id, action\)`) Tj
+ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 16 0 R >>
+endobj
+18 0 obj
+<< /Length 2808 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+(- **Location:** `Leave/views.py:21-31`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def manage_leave\(request, leave_id, action\):) Tj
+0 -12 Td (    leave = Leave.objects.get\(pk=leave_id\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    if action == 'approve':) Tj
+0 -12 Td (        leave.status = 'approved') Tj
+0 -12 Td (        leave.approved_by = request.user) Tj
+0 -12 Td (    elif action == 'reject':) Tj
+0 -12 Td (        leave.status = 'rejected') Tj
+0 -12 Td () Tj
+0 -12 Td (    leave.save\(\)) Tj
+0 -12 Td (    return redirect\('Dashboard:dashboard_view'\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 3. `Employee_leave_apply_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Employee_leave_apply_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Leave/views.py:37-59`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Employee_leave_apply_view\(request\):) Tj
+0 -12 Td (    if request.method == 'POST':) Tj
+0 -12 Td (        leave_type = request.POST.get\('leave_type'\)) Tj
+0 -12 Td (        start_date = request.POST.get\('start_date'\)) Tj
+0 -12 Td (        end_date = request.POST.get\('end_date'\)) Tj
+0 -12 Td (        reason = request.POST.get\('reason'\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        # ? yahan sirf Employee object lena hai) Tj
+0 -12 Td (        employee = request.user.employee) Tj
+0 -12 Td () Tj
+0 -12 Td (        Leave.objects.create\() Tj
+0 -12 Td (            employee=employee,                       # ? correct) Tj
+0 -12 Td (            business_profile=employee.business_profile,) Tj
+0 -12 Td (            leave_type=leave_type,) Tj
+0 -12 Td (            start_date=start_date,) Tj
+0 -12 Td (            end_date=end_date,) Tj
+0 -12 Td (            reason=reason,) Tj
+0 -12 Td (            status='pending') Tj
+0 -12 Td (        \)) Tj
+0 -12 Td (        employee.save\(\)) Tj
+0 -12 Td (        return HttpResponse\("Leave request submitted successfully"\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    return HttpResponse\("Invalid request method"\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Attendance App) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Attendance/forms.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `AttendanceForm.save` \(method\)) Tj
+0 -12 Td (- **Signature:** `save\(self, commit\)`) Tj
+0 -12 Td (- **Location:** `Attendance/forms.py:11-21`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def save\(self, commit=True\):) Tj
+0 -12 Td (        attendance = super\(\).save\(commit=False\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        # safety \(model already handles this, but extra protection\)) Tj
+0 -12 Td (        if not attendance.business_profile and attendance.employee:) Tj
+0 -12 Td (            attendance.business_profile = attendance.employee.business_profile) Tj
+ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 18 0 R >>
+endobj
+20 0 obj
+<< /Length 2722 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+() Tj
+0 -12 Td (        if commit:) Tj
+0 -12 Td (            attendance.save\(\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        return attendance) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Attendance/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Attendance.clean` \(method\)) Tj
+0 -12 Td (- **Signature:** `clean\(self\)`) Tj
+0 -12 Td (- **Location:** `Attendance/models.py:40-49`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def clean\(self\):) Tj
+0 -12 Td (        if self.check_in and self.check_out:) Tj
+0 -12 Td (            if self.check_out < self.check_in:) Tj
+0 -12 Td (                raise ValidationError\("Check-out time cannot be before check-in"\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        if self.employee_id and self.business_profile_id:) Tj
+0 -12 Td (            if self.employee.business_profile_id != self.business_profile_id:) Tj
+0 -12 Td (                raise ValidationError\() Tj
+0 -12 Td (                    "Employee must belong to the same business as attendance record") Tj
+0 -12 Td (                \)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `Attendance.save` \(method\)) Tj
+0 -12 Td (- **Signature:** `save\(self, *args, **kwargs\)`) Tj
+0 -12 Td (- **Location:** `Attendance/models.py:51-54`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def save\(self, *args, **kwargs\):) Tj
+0 -12 Td (        if not self.business_profile and self.employee:) Tj
+0 -12 Td (            self.business_profile = self.employee.business_profile) Tj
+0 -12 Td (        super\(\).save\(*args, **kwargs\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 3. `Attendance.Total_hours` \(method\)) Tj
+0 -12 Td (- **Signature:** `Total_hours\(self\)`) Tj
+0 -12 Td (- **Location:** `Attendance/models.py:56-60`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Total_hours\(self\):) Tj
+0 -12 Td (        if self.check_in and self.check_out:) Tj
+0 -12 Td (            delta = datetime.combine\(date.min, self.check_out\) - datetime.combine\(date.min, ) Tj
+0 -12 Td (self.check_in\)) Tj
+0 -12 Td (            return delta) Tj
+0 -12 Td (        return None) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 4. `Attendance.__str__` \(method\)) Tj
+0 -12 Td (- **Signature:** `__str__\(self\)`) Tj
+0 -12 Td (- **Location:** `Attendance/models.py:61-62`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def __str__\(self\):) Tj
+0 -12 Td (        return f"{self.employee.username} - {self.date}") Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Attendance/views.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `attendance_create` \(function\)) Tj
+0 -12 Td (- **Signature:** `attendance_create\(request\)`) Tj
+ET
+endstream
+endobj
+21 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 20 0 R >>
+endobj
+22 0 obj
+<< /Length 2683 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+(- **Location:** `Attendance/views.py:7-21`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def attendance_create\(request\):) Tj
+0 -12 Td (    if request.method == 'POST':) Tj
+0 -12 Td (        form = AttendanceForm\(request.POST\)) Tj
+0 -12 Td (        if form.is_valid\(\):) Tj
+0 -12 Td (            attendance = form.save\(commit=False\)) Tj
+0 -12 Td () Tj
+0 -12 Td (            # ? Assign business from logged-in user) Tj
+0 -12 Td (            attendance.business_profile = request.user.business_profile) Tj
+0 -12 Td (            attendance.save\(\)) Tj
+0 -12 Td () Tj
+0 -12 Td (            return redirect\('Dashboard:dashboard_view'\)  # change as needed) Tj
+0 -12 Td (    else:) Tj
+0 -12 Td (        form = AttendanceForm\(\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    return render\(request, 'Attendance.html', {'form': form}\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `Attendance_list_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Attendance_list_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Attendance/views.py:26-31`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Attendance_list_view\(request\):) Tj
+0 -12 Td (    attendance_records = Attendance.objects.all\(\)) Tj
+0 -12 Td (    context = {) Tj
+0 -12 Td (        'attendance_records': attendance_records) Tj
+0 -12 Td (    }) Tj
+0 -12 Td (    return context) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Dashboard App) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Dashboard/servies.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `count_employee_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `count_employee_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Dashboard/servies.py:13-15`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def count_employee_view\(request\):) Tj
+0 -12 Td (    employee_count = Employee.objects.filter\(business_profile=request.user.business_profile, ) Tj
+0 -12 Td (role='employee', is_active=True\).count\(\)) Tj
+0 -12 Td (    return employee_count) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `get_recent_added_employees` \(function\)) Tj
+0 -12 Td (- **Signature:** `get_recent_added_employees\(user\)`) Tj
+0 -12 Td (- **Location:** `Dashboard/servies.py:17-21`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def get_recent_added_employees\(user\):) Tj
+0 -12 Td (    return Employee.objects.filter\() Tj
+0 -12 Td (        business_profile=user.business_profile,) Tj
+0 -12 Td (        role='employee') Tj
+0 -12 Td (    \).order_by\('-date_joined'\)[:3]) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 3. `fiend_Total_deparment` \(function\)) Tj
+ET
+endstream
+endobj
+23 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 22 0 R >>
+endobj
+24 0 obj
+<< /Length 2969 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+(- **Signature:** `fiend_Total_deparment\(request\)`) Tj
+0 -12 Td (- **Location:** `Dashboard/servies.py:29-31`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def fiend_Total_deparment\(request\):) Tj
+0 -12 Td (    total_departments = ) Tj
+0 -12 Td (Department.objects.filter\(business_profile=request.user.business_profile\)) Tj
+0 -12 Td (    return total_departments) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 4. `today_attendance_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `today_attendance_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Dashboard/servies.py:42-45`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def today_attendance_view\(request\):) Tj
+0 -12 Td (    today = timezone.now\(\).date\(\)) Tj
+0 -12 Td (    today_attendance = ) Tj
+0 -12 Td (Attendance.objects.filter\(business_profile=request.user.business_profile, date=today\)) Tj
+0 -12 Td (    return today_attendance) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 5. `Get_pending_leave_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Get_pending_leave_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Dashboard/servies.py:53-55`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Get_pending_leave_view\(request\):) Tj
+0 -12 Td (    pending_leaves = Leave.objects.filter\(status='pending', ) Tj
+0 -12 Td (business_profile=request.user.business_profile\)) Tj
+0 -12 Td (    return pending_leaves) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Dashboard/views.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Dashboard_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Dashboard_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Dashboard/views.py:7-19`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Dashboard_view\(request\):) Tj
+0 -12 Td (    count = count_employee_view\(request\)) Tj
+0 -12 Td (    departments = fiend_Total_deparment\(request\)) Tj
+0 -12 Td (    context = {) Tj
+0 -12 Td (        'total_employees': count,) Tj
+0 -12 Td (        'Total_departments': departments,) Tj
+0 -12 Td (        'today_attendance': today_attendance_view\(request\),) Tj
+0 -12 Td (        'pending_leaves': Get_pending_leave_view\(request\).count\(\),) Tj
+0 -12 Td (        'pending_leave_list': Get_pending_leave_view\(request\),) Tj
+0 -12 Td (        'recentadd_employees':get_recent_added_employees\(request.user\),) Tj
+0 -12 Td () Tj
+0 -12 Td (    }) Tj
+0 -12 Td (    return render\(request, 'dashboard.html', context\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `Employee_Dashboard_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Employee_Dashboard_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Dashboard/views.py:22-26`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Employee_Dashboard_view\(request\):) Tj
+0 -12 Td (    context = {) Tj
+0 -12 Td (        'leave_types': Leave.objects.values_list\('leave_type', flat=True\).distinct\(\)) Tj
+ET
+endstream
+endobj
+25 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 24 0 R >>
+endobj
+26 0 obj
+<< /Length 2194 >>
+stream
+BT
+/F1 10 Tf
+40 802 Td
+(    }) Tj
+0 -12 Td (    return render\(request, 'Employee_Dashboard.html', context\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Login_App App) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `Login_App/views.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `login_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `login_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Login_App/views.py:7-20`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def login_view\(request\):) Tj
+0 -12 Td (    if request.method == 'POST':) Tj
+0 -12 Td (        username = request.POST.get\('username'\)) Tj
+0 -12 Td (        password = request.POST.get\('password'\)) Tj
+0 -12 Td (        user = authenticate\(request, username=username, password=password\)) Tj
+0 -12 Td (        if user is None:) Tj
+0 -12 Td (            return HttpResponse\("Invalid username or password"\)) Tj
+0 -12 Td (        if user.role == 'owner':) Tj
+0 -12 Td (            login\(request, user\)) Tj
+0 -12 Td (            return redirect\('Dashboard:dashboard_view'\)) Tj
+0 -12 Td (        elif user.role == 'employee':) Tj
+0 -12 Td (            login\(request, user\)) Tj
+0 -12 Td (            return redirect\('Dashboard:employee_dashboard'\)) Tj
+0 -12 Td (    return render\(request, 'Login.html'\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 2. `logout_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `logout_view\(request\)`) Tj
+0 -12 Td (- **Location:** `Login_App/views.py:22-24`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def logout_view\(request\):) Tj
+0 -12 Td (    logout\(request\)) Tj
+0 -12 Td (    return redirect\('Home'\)) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## E_Managements App) Tj
+0 -12 Td () Tj
+0 -12 Td (### File: `E_Managements/views.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### 1. `Home_view` \(function\)) Tj
+0 -12 Td (- **Signature:** `Home_view\(request\)`) Tj
+0 -12 Td (- **Location:** `E_Managements/views.py:5-6`) Tj
+0 -12 Td (- **Code:**) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (def Home_view\(request\):) Tj
+0 -12 Td (    return render\(request,"Home.html"\)) Tj
+0 -12 Td (```) Tj
+ET
+endstream
+endobj
+27 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 26 0 R >>
+endobj
+xref
+0 28
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000193 00000 n 
+0000000263 00000 n 
+0000002779 00000 n 
+0000002905 00000 n 
+0000005972 00000 n 
+0000006098 00000 n 
+0000009194 00000 n 
+0000009320 00000 n 
+0000012334 00000 n 
+0000012462 00000 n 
+0000015171 00000 n 
+0000015299 00000 n 
+0000017644 00000 n 
+0000017772 00000 n 
+0000020384 00000 n 
+0000020512 00000 n 
+0000023373 00000 n 
+0000023501 00000 n 
+0000026276 00000 n 
+0000026404 00000 n 
+0000029140 00000 n 
+0000029268 00000 n 
+0000032290 00000 n 
+0000032418 00000 n 
+0000034665 00000 n 
+trailer
+<< /Size 28 /Root 1 0 R >>
+startxref
+34793
+%%EOF

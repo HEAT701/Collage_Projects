@@ -1,0 +1,612 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 8 /Kids [ 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R ] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 2793 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(# Models Documentation \(All Apps\)) Tj
+0 -12 Td () Tj
+0 -12 Td (This document contains model-level documentation for all `models.py` files in the repository, ) Tj
+0 -12 Td (including fields, relationships, constraints, and helper methods.) Tj
+0 -12 Td () Tj
+0 -12 Td (## Files Covered) Tj
+0 -12 Td (- `Employee/models.py`: 2 model\(s\)) Tj
+0 -12 Td (- `Department/models.py`: 1 model\(s\)) Tj
+0 -12 Td (- `Role/models.py`: 1 model\(s\)) Tj
+0 -12 Td (- `Project/models.py`: 1 model\(s\)) Tj
+0 -12 Td (- `Leave/models.py`: 1 model\(s\)) Tj
+0 -12 Td (- `Attendance/models.py`: 1 model\(s\)) Tj
+0 -12 Td (- `Dashboard/models.py`: 0 model\(s\)) Tj
+0 -12 Td (- `Login_App/models.py`: 0 model\(s\)) Tj
+0 -12 Td () Tj
+0 -12 Td (## Model Relationship Diagram \(ER\)) Tj
+0 -12 Td () Tj
+0 -12 Td (```mermaid) Tj
+0 -12 Td (erDiagram) Tj
+0 -12 Td (    BUSINESSPROFILE ||--o{ EMPLOYEE : owns) Tj
+0 -12 Td (    BUSINESSPROFILE ||--o{ DEPARTMENT : has) Tj
+0 -12 Td (    BUSINESSPROFILE ||--o{ JOB : has) Tj
+0 -12 Td (    BUSINESSPROFILE ||--o{ PROJECT : has) Tj
+0 -12 Td (    BUSINESSPROFILE ||--o{ LEAVE : has) Tj
+0 -12 Td (    BUSINESSPROFILE ||--o{ ATTENDANCE : has) Tj
+0 -12 Td (    DEPARTMENT ||--o{ EMPLOYEE : contains) Tj
+0 -12 Td (    JOB ||--o{ EMPLOYEE : assigns) Tj
+0 -12 Td (    EMPLOYEE ||--o{ EMPLOYEE : manages) Tj
+0 -12 Td (    EMPLOYEE ||--o{ LEAVE : requests) Tj
+0 -12 Td (    EMPLOYEE ||--o{ LEAVE : approves) Tj
+0 -12 Td (    EMPLOYEE ||--o{ ATTENDANCE : marks) Tj
+0 -12 Td (    PROJECT }o--o{ EMPLOYEE : assigned) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## File: `Employee/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Model: `BusinessProfile`) Tj
+0 -12 Td (- **Base classes**: `models.Model`) Tj
+0 -12 Td (- **Source location**: `Employee/models.py:7-14`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Fields) Tj
+0 -12 Td (| Field | Type | Key options |) Tj
+0 -12 Td (|---|---|---|) Tj
+0 -12 Td (| `business_name` | `CharField` | max_length=100 |) Tj
+0 -12 Td (| `business_address` | `CharField` | max_length=255 |) Tj
+0 -12 Td (| `business_phone` | `CharField` | max_length=15 |) Tj
+0 -12 Td (| `business_email` | `EmailField` | - |) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Meta options) Tj
+0 -12 Td (_No Meta options defined._) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Methods) Tj
+0 -12 Td (- `__str__\(\)` \(`Employee/models.py:13-14`\)) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Source snippet) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (class BusinessProfile\(models.Model\):) Tj
+0 -12 Td (    business_name = models.CharField\(max_length=100\)) Tj
+0 -12 Td (    business_address = models.CharField\(max_length=255\)) Tj
+0 -12 Td (    business_phone = models.CharField\(max_length=15\)) Tj
+0 -12 Td (    business_email = models.EmailField\(\)) Tj
+0 -12 Td () Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 2814 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(    def __str__\(self\):) Tj
+0 -12 Td (        return self.business_name) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### Model: `Employee`) Tj
+0 -12 Td (- **Base classes**: `AbstractUser`) Tj
+0 -12 Td (- **Source location**: `Employee/models.py:16-67`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Fields) Tj
+0 -12 Td (| Field | Type | Key options |) Tj
+0 -12 Td (|---|---|---|) Tj
+0 -12 Td (| `role` | `CharField` | max_length=10; default='employee'; choices=ROLE_CHOICES |) Tj
+0 -12 Td (| `business_profile` | `ForeignKey` | null=True; blank=True; on_delete=models.CASCADE; ) Tj
+0 -12 Td (related_name='employees'; args=BusinessProfile |) Tj
+0 -12 Td (| `phone` | `CharField` | max_length=15; blank=True |) Tj
+0 -12 Td (| `hire_date` | `DateField` | default=now |) Tj
+0 -12 Td (| `salary` | `DecimalField` | null=True; blank=True |) Tj
+0 -12 Td (| `department` | `ForeignKey` | null=True; blank=True; on_delete=models.SET_NULL; ) Tj
+0 -12 Td (related_name='employees'; args=Department |) Tj
+0 -12 Td (| `job` | `ForeignKey` | null=True; blank=True; on_delete=models.SET_NULL; ) Tj
+0 -12 Td (related_name='employees'; args=Job |) Tj
+0 -12 Td (| `manager` | `ForeignKey` | null=True; blank=True; on_delete=models.SET_NULL; ) Tj
+0 -12 Td (related_name='team_members'; args='self' |) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Meta options) Tj
+0 -12 Td (_No Meta options defined._) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Methods) Tj
+0 -12 Td (- `__str__\(\)` \(`Employee/models.py:66-67`\)) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Source snippet) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (class Employee\(AbstractUser\):) Tj
+0 -12 Td (    ROLE_CHOICES = \() Tj
+0 -12 Td (        \('employee', 'Employee'\),) Tj
+0 -12 Td (        \('owner', 'Owner'\),) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    role = models.CharField\(max_length=10, choices=ROLE_CHOICES, default='employee'\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    business_profile = models.ForeignKey\() Tj
+0 -12 Td (        BusinessProfile,) Tj
+0 -12 Td (        null= True,) Tj
+0 -12 Td (        blank= True,) Tj
+0 -12 Td (        on_delete=models.CASCADE,) Tj
+0 -12 Td (        related_name='employees') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    phone = models.CharField\(max_length=15, blank=True\)) Tj
+0 -12 Td (    hire_date = models.DateField\(default=now\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    salary = models.DecimalField\() Tj
+0 -12 Td (        max_digits=10,) Tj
+0 -12 Td (        decimal_places=2,) Tj
+0 -12 Td (        null=True,) Tj
+0 -12 Td (        blank=True) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    department = models.ForeignKey\() Tj
+0 -12 Td (        Department,) Tj
+0 -12 Td (        on_delete=models.SET_NULL,) Tj
+0 -12 Td (        null=True,) Tj
+0 -12 Td (        blank=True,) Tj
+0 -12 Td (        related_name='employees') Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 2343 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    job = models.ForeignKey\() Tj
+0 -12 Td (        Job,) Tj
+0 -12 Td (        on_delete=models.SET_NULL,) Tj
+0 -12 Td (        null=True,) Tj
+0 -12 Td (        blank=True,) Tj
+0 -12 Td (        related_name='employees') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    manager = models.ForeignKey\() Tj
+0 -12 Td (        'self',) Tj
+0 -12 Td (        on_delete=models.SET_NULL,) Tj
+0 -12 Td (        null=True,) Tj
+0 -12 Td (        blank=True,) Tj
+0 -12 Td (        related_name='team_members') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    def __str__\(self\):) Tj
+0 -12 Td (        return self.username) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## File: `Department/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Model: `Department`) Tj
+0 -12 Td (- **Base classes**: `models.Model`) Tj
+0 -12 Td (- **Source location**: `Department/models.py:4-17`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Fields) Tj
+0 -12 Td (| Field | Type | Key options |) Tj
+0 -12 Td (|---|---|---|) Tj
+0 -12 Td (| `name` | `CharField` | max_length=100 |) Tj
+0 -12 Td (| `description` | `TextField` | blank=True |) Tj
+0 -12 Td (| `business_profile` | `ForeignKey` | on_delete=models.CASCADE; related_name='departments'; ) Tj
+0 -12 Td (args='Employee.BusinessProfile' |) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Meta options) Tj
+0 -12 Td (_No Meta options defined._) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Methods) Tj
+0 -12 Td (- `total_employees\(\)` \(`Department/models.py:13-14`\)) Tj
+0 -12 Td (- `__str__\(\)` \(`Department/models.py:16-17`\)) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Source snippet) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (class Department\(models.Model\):) Tj
+0 -12 Td (    name = models.CharField\(max_length=100\)) Tj
+0 -12 Td (    description = models.TextField\(blank=True\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    business_profile = models.ForeignKey\() Tj
+0 -12 Td (        'Employee.BusinessProfile',) Tj
+0 -12 Td (        on_delete=models.CASCADE,) Tj
+0 -12 Td (        related_name='departments') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td (    def total_employees\(self\):) Tj
+0 -12 Td (        return self.employees.count\(\)) Tj
+0 -12 Td (    ) Tj
+0 -12 Td (    def __str__\(self\):) Tj
+0 -12 Td (        return self.name) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 2562 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+() Tj
+0 -12 Td (## File: `Role/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Model: `Job`) Tj
+0 -12 Td (- **Base classes**: `models.Model`) Tj
+0 -12 Td (- **Source location**: `Role/models.py:2-11`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Fields) Tj
+0 -12 Td (| Field | Type | Key options |) Tj
+0 -12 Td (|---|---|---|) Tj
+0 -12 Td (| `title` | `CharField` | max_length=100 |) Tj
+0 -12 Td (| `description` | `TextField` | blank=True |) Tj
+0 -12 Td (| `business_profile` | `ForeignKey` | on_delete=models.CASCADE; related_name='jobs'; ) Tj
+0 -12 Td (args='Employee.BusinessProfile' |) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Meta options) Tj
+0 -12 Td (_No Meta options defined._) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Methods) Tj
+0 -12 Td (- `__str__\(\)` \(`Role/models.py:10-11`\)) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Source snippet) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (class Job\(models.Model\):) Tj
+0 -12 Td (    title = models.CharField\(max_length=100\)) Tj
+0 -12 Td (    description = models.TextField\(blank=True\)) Tj
+0 -12 Td (    business_profile = models.ForeignKey\() Tj
+0 -12 Td (        'Employee.BusinessProfile',) Tj
+0 -12 Td (        on_delete=models.CASCADE,) Tj
+0 -12 Td (        related_name='jobs') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td (    def __str__\(self\):) Tj
+0 -12 Td (        return self.title) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## File: `Project/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Model: `Project`) Tj
+0 -12 Td (- **Base classes**: `models.Model`) Tj
+0 -12 Td (- **Source location**: `Project/models.py:3-23`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Fields) Tj
+0 -12 Td (| Field | Type | Key options |) Tj
+0 -12 Td (|---|---|---|) Tj
+0 -12 Td (| `name` | `CharField` | max_length=100 |) Tj
+0 -12 Td (| `description` | `TextField` | blank=True |) Tj
+0 -12 Td (| `business_profile` | `ForeignKey` | on_delete=models.CASCADE; related_name='projects'; ) Tj
+0 -12 Td (args='Employee.BusinessProfile' |) Tj
+0 -12 Td (| `employees` | `ManyToManyField` | blank=True; related_name='projects'; args=Employee |) Tj
+0 -12 Td (| `start_date` | `DateField` | - |) Tj
+0 -12 Td (| `end_date` | `DateField` | null=True; blank=True |) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Meta options) Tj
+0 -12 Td (_No Meta options defined._) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Methods) Tj
+0 -12 Td (- `__str__\(\)` \(`Project/models.py:22-23`\)) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Source snippet) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (class Project\(models.Model\):) Tj
+0 -12 Td (    name = models.CharField\(max_length=100\)) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 2673 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(    description = models.TextField\(blank=True\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    business_profile = models.ForeignKey\() Tj
+0 -12 Td (       'Employee.BusinessProfile',) Tj
+0 -12 Td (        on_delete=models.CASCADE,) Tj
+0 -12 Td (        related_name='projects') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    employees = models.ManyToManyField\() Tj
+0 -12 Td (        Employee,) Tj
+0 -12 Td (        related_name='projects',) Tj
+0 -12 Td (        blank=True) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    start_date = models.DateField\(\)) Tj
+0 -12 Td (    end_date = models.DateField\(null=True, blank=True\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    def __str__\(self\):) Tj
+0 -12 Td (        return self.name) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## File: `Leave/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Model: `Leave`) Tj
+0 -12 Td (- **Base classes**: `models.Model`) Tj
+0 -12 Td (- **Source location**: `Leave/models.py:4-65`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Fields) Tj
+0 -12 Td (| Field | Type | Key options |) Tj
+0 -12 Td (|---|---|---|) Tj
+0 -12 Td (| `employee` | `ForeignKey` | on_delete=models.CASCADE; related_name='leaves'; args=Employee |) Tj
+0 -12 Td (| `business_profile` | `ForeignKey` | on_delete=models.CASCADE; related_name='leaves'; ) Tj
+0 -12 Td (args='Employee.BusinessProfile' |) Tj
+0 -12 Td (| `leave_type` | `CharField` | max_length=10; choices=LEAVE_TYPE |) Tj
+0 -12 Td (| `start_date` | `DateField` | - |) Tj
+0 -12 Td (| `end_date` | `DateField` | - |) Tj
+0 -12 Td (| `reason` | `TextField` | - |) Tj
+0 -12 Td (| `status` | `CharField` | max_length=10; default='pending'; choices=LEAVE_STATUS |) Tj
+0 -12 Td (| `approved_by` | `ForeignKey` | null=True; blank=True; on_delete=models.SET_NULL; ) Tj
+0 -12 Td (related_name='approved_leaves'; args='Employee.Employee' |) Tj
+0 -12 Td (| `applied_on` | `DateTimeField` | - |) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Meta options) Tj
+0 -12 Td (_No Meta options defined._) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Methods) Tj
+0 -12 Td (- `clean\(\)` \(`Leave/models.py:55-62`\)) Tj
+0 -12 Td (- `__str__\(\)` \(`Leave/models.py:64-65`\)) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Source snippet) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (class Leave\(models.Model\):) Tj
+0 -12 Td (    LEAVE_STATUS = \() Tj
+0 -12 Td (        \('pending', 'Pending'\),) Tj
+0 -12 Td (        \('approved', 'Approved'\),) Tj
+0 -12 Td (        \('rejected', 'Rejected'\),) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    LEAVE_TYPE = \() Tj
+0 -12 Td (        \('casual', 'Casual'\),) Tj
+0 -12 Td (        \('sick', 'Sick'\),) Tj
+0 -12 Td (        \('paid', 'Paid'\),) Tj
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2461 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(        \('unpaid', 'Unpaid'\),) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    employee = models.ForeignKey\() Tj
+0 -12 Td (        Employee,) Tj
+0 -12 Td (        on_delete=models.CASCADE,) Tj
+0 -12 Td (        related_name='leaves') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    business_profile = models.ForeignKey\() Tj
+0 -12 Td (        'Employee.BusinessProfile',) Tj
+0 -12 Td (        on_delete=models.CASCADE,) Tj
+0 -12 Td (        related_name='leaves') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    leave_type = models.CharField\() Tj
+0 -12 Td (        max_length=10,) Tj
+0 -12 Td (        choices=LEAVE_TYPE) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    start_date = models.DateField\(\)) Tj
+0 -12 Td (    end_date = models.DateField\(\)) Tj
+0 -12 Td (    reason = models.TextField\(\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    status = models.CharField\() Tj
+0 -12 Td (        max_length=10,) Tj
+0 -12 Td (        choices=LEAVE_STATUS,) Tj
+0 -12 Td (        default='pending') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    approved_by = models.ForeignKey\() Tj
+0 -12 Td (        'Employee.Employee',) Tj
+0 -12 Td (        on_delete=models.SET_NULL,) Tj
+0 -12 Td (        null=True,) Tj
+0 -12 Td (        blank=True,) Tj
+0 -12 Td (        related_name='approved_leaves') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    applied_on = models.DateTimeField\(auto_now_add=True\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    def clean\(self\):) Tj
+0 -12 Td (        if self.end_date < self.start_date:) Tj
+0 -12 Td (            raise ValidationError\("End date cannot be before start date"\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        if self.employee.business_profile != self.business_profile:) Tj
+0 -12 Td (            raise ValidationError\() Tj
+0 -12 Td (                "Employee must belong to the same business as the leave") Tj
+0 -12 Td (            \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    def __str__\(self\):) Tj
+0 -12 Td (        return f"{self.employee.username} \({self.leave_type}\) - {self.start_date} to ) Tj
+0 -12 Td ({self.end_date}") Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## File: `Attendance/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Model: `Attendance`) Tj
+0 -12 Td (- **Base classes**: `models.Model`) Tj
+0 -12 Td (- **Source location**: `Attendance/models.py:5-62`) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Fields) Tj
+0 -12 Td (| Field | Type | Key options |) Tj
+ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 2933 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(|---|---|---|) Tj
+0 -12 Td (| `employee` | `ForeignKey` | on_delete=models.CASCADE; related_name='attendance'; ) Tj
+0 -12 Td (args='Employee.Employee' |) Tj
+0 -12 Td (| `business_profile` | `ForeignKey` | null=True; blank=True; on_delete=models.CASCADE; ) Tj
+0 -12 Td (related_name='attendance'; args='Employee.BusinessProfile' |) Tj
+0 -12 Td (| `date` | `DateField` | - |) Tj
+0 -12 Td (| `check_in` | `TimeField` | null=True; blank=True |) Tj
+0 -12 Td (| `check_out` | `TimeField` | null=True; blank=True |) Tj
+0 -12 Td (| `status` | `CharField` | max_length=10; default='present'; choices=STATUS_CHOICES |) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Meta options) Tj
+0 -12 Td (- `unique_together` = `\('employee', 'date'\)`) Tj
+0 -12 Td (- `ordering` = ``) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Methods) Tj
+0 -12 Td (- `clean\(\)` \(`Attendance/models.py:40-49`\)) Tj
+0 -12 Td (- `save\(\)` \(`Attendance/models.py:51-54`\)) Tj
+0 -12 Td (- `Total_hours\(\)` \(`Attendance/models.py:56-60`\)) Tj
+0 -12 Td (- `__str__\(\)` \(`Attendance/models.py:61-62`\)) Tj
+0 -12 Td () Tj
+0 -12 Td (#### Source snippet) Tj
+0 -12 Td (```python) Tj
+0 -12 Td (class Attendance\(models.Model\):) Tj
+0 -12 Td (    STATUS_CHOICES = \() Tj
+0 -12 Td (        \('present', 'Present'\),) Tj
+0 -12 Td (        \('absent', 'Absent'\),) Tj
+0 -12 Td (        \('half_day', 'Half Day'\),) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    employee = models.ForeignKey\() Tj
+0 -12 Td (        'Employee.Employee',) Tj
+0 -12 Td (        on_delete=models.CASCADE,) Tj
+0 -12 Td (        related_name='attendance') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    business_profile = models.ForeignKey\() Tj
+0 -12 Td (        'Employee.BusinessProfile',) Tj
+0 -12 Td (        on_delete=models.CASCADE,) Tj
+0 -12 Td (        related_name='attendance',) Tj
+0 -12 Td (        null=True,) Tj
+0 -12 Td (        blank=True) Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    date = models.DateField\(\)) Tj
+0 -12 Td (    check_in = models.TimeField\(null=True, blank=True\)) Tj
+0 -12 Td (    check_out = models.TimeField\(null=True, blank=True\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    status = models.CharField\() Tj
+0 -12 Td (        max_length=10,) Tj
+0 -12 Td (        choices=STATUS_CHOICES,) Tj
+0 -12 Td (        default='present') Tj
+0 -12 Td (    \)) Tj
+0 -12 Td () Tj
+0 -12 Td (    class Meta:) Tj
+0 -12 Td (        unique_together = \('employee', 'date'\)) Tj
+0 -12 Td (        ordering = ['-date']) Tj
+0 -12 Td () Tj
+0 -12 Td (    def clean\(self\):) Tj
+0 -12 Td (        if self.check_in and self.check_out:) Tj
+0 -12 Td (            if self.check_out < self.check_in:) Tj
+0 -12 Td (                raise ValidationError\("Check-out time cannot be before check-in"\)) Tj
+0 -12 Td () Tj
+0 -12 Td (        if self.employee_id and self.business_profile_id:) Tj
+0 -12 Td (            if self.employee.business_profile_id != self.business_profile_id:) Tj
+ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 16 0 R >>
+endobj
+18 0 obj
+<< /Length 1287 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(                raise ValidationError\() Tj
+0 -12 Td (                    "Employee must belong to the same business as attendance record") Tj
+0 -12 Td (                \)) Tj
+0 -12 Td (            ) Tj
+0 -12 Td (    def save\(self, *args, **kwargs\):) Tj
+0 -12 Td (        if not self.business_profile and self.employee:) Tj
+0 -12 Td (            self.business_profile = self.employee.business_profile) Tj
+0 -12 Td (        super\(\).save\(*args, **kwargs\)) Tj
+0 -12 Td () Tj
+0 -12 Td (    def Total_hours\(self\):) Tj
+0 -12 Td (        if self.check_in and self.check_out:) Tj
+0 -12 Td (            delta = datetime.combine\(date.min, self.check_out\) - datetime.combine\(date.min, ) Tj
+0 -12 Td (self.check_in\)) Tj
+0 -12 Td (            return delta) Tj
+0 -12 Td (        return None) Tj
+0 -12 Td (    def __str__\(self\):) Tj
+0 -12 Td (        return f"{self.employee.username} - {self.date}") Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## File: `Dashboard/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (_No model classes defined in this file._) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## File: `Login_App/models.py`) Tj
+0 -12 Td () Tj
+0 -12 Td (_No model classes defined in this file._) Tj
+0 -12 Td () Tj
+ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 18 0 R >>
+endobj
+xref
+0 20
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000164 00000 n 
+0000000232 00000 n 
+0000003077 00000 n 
+0000003203 00000 n 
+0000006069 00000 n 
+0000006195 00000 n 
+0000008590 00000 n 
+0000008716 00000 n 
+0000011331 00000 n 
+0000011459 00000 n 
+0000014185 00000 n 
+0000014313 00000 n 
+0000016827 00000 n 
+0000016955 00000 n 
+0000019941 00000 n 
+0000020069 00000 n 
+0000021409 00000 n 
+trailer
+<< /Size 20 /Root 1 0 R >>
+startxref
+21537
+%%EOF

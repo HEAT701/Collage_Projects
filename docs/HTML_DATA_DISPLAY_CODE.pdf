@@ -1,0 +1,250 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 3 /Kids [ 5 0 R 7 0 R 9 0 R ] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Length 3007 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(# HTML Data Display Code Extract) Tj
+0 -12 Td () Tj
+0 -12 Td (Ye document un HTML templates ka **main code extract** deta hai jahan dynamic data \(`{{ ... }}` ) Tj
+0 -12 Td (/ `{% for ... %}`\) show kiya ja raha hai.) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 1\) `templates/dashboard.html`) Tj
+0 -12 Td () Tj
+0 -12 Td (### A\) Dashboard cards \(counts\)) Tj
+0 -12 Td (```html) Tj
+0 -12 Td (<p class="text-3xl font-black mt-1">{{total_employees}}</p>) Tj
+0 -12 Td (<p class="text-3xl font-black mt-1">{{Total_departments.count}}</p>) Tj
+0 -12 Td (<p class="text-3xl font-black mt-1">{{today_attendance.count}}</p>) Tj
+0 -12 Td (<p class="text-3xl font-black mt-1">{{pending_leaves}}</p>) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### B\) Recent employees table) Tj
+0 -12 Td (```html) Tj
+0 -12 Td ({% for emp in recentadd_employees %}) Tj
+0 -12 Td (<tr class="border-b border-slate-100 last:border-none hover:bg-slate-50 transition group">) Tj
+0 -12 Td (    <td class="py-4">) Tj
+0 -12 Td (        <div class="flex items-center gap-3">) Tj
+0 -12 Td (            <div class="w-9 h-9 bg-indigo-100 rounded-lg flex items-center justify-center font-) Tj
+0 -12 Td (bold text-indigo-600">) Tj
+0 -12 Td (                {{ emp.first_name|slice:":1" }}) Tj
+0 -12 Td (            </div>) Tj
+0 -12 Td (            <div>) Tj
+0 -12 Td (                <p>{{ emp.first_name }} {{ emp.last_name }}</p>) Tj
+0 -12 Td (                <p class="text-[10px] text-slate-400 font-medium">{{ emp.job.title }}</p>) Tj
+0 -12 Td (            </div>) Tj
+0 -12 Td (        </div>) Tj
+0 -12 Td (    </td>) Tj
+0 -12 Td (    <td class="py-4 text-slate-500 font-medium">{{ emp.phone }}</td>) Tj
+0 -12 Td (    <td class="py-4 text-slate-500 font-medium">{{ emp.hire_date|date:"d M, Y" }}</td>) Tj
+0 -12 Td (</tr>) Tj
+0 -12 Td ({% endfor %}) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### C\) Attendance table) Tj
+0 -12 Td (```html) Tj
+0 -12 Td ({% for att in today_attendance %}) Tj
+0 -12 Td (<tr class="border-b border-slate-100">) Tj
+0 -12 Td (    <td class="py-4 font-bold">{{ att.employee }}</td>) Tj
+0 -12 Td (    <td class="py-4 text-slate-500">{{ att.check_in }}</td>) Tj
+0 -12 Td (    <td class="py-4 text-slate-500">{{ att.check_out }}</td>) Tj
+0 -12 Td (    <td class="py-4 font-bold">{{ att.Total_hours }}</td>) Tj
+0 -12 Td (</tr>) Tj
+0 -12 Td ({% endfor %}) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### D\) Pending leave cards) Tj
+0 -12 Td (```html) Tj
+0 -12 Td ({% for leave in pending_leave_list %}) Tj
+0 -12 Td (<div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm">) Tj
+0 -12 Td (    <p class="font-bold text-slate-800">{{ leave.employee }}</p>) Tj
+0 -12 Td (    <p class="text-xs text-slate-400">{{ leave.start_date }} - {{ leave.end_date }}</p>) Tj
+0 -12 Td (</div>) Tj
+0 -12 Td ({% endfor %}) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### E\) Departments display) Tj
+0 -12 Td (```html) Tj
+0 -12 Td ({% for dept in Total_departments %}) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 2989 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(<div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md ) Tj
+0 -12 Td (transition">) Tj
+0 -12 Td (    <h4 class="text-xl font-black text-slate-800">{{ dept.name }}</h4>) Tj
+0 -12 Td (    <p class="text-sm text-slate-400 mb-6">{{ dept.total_employees }} Team Members</p>) Tj
+0 -12 Td (</div>) Tj
+0 -12 Td ({% endfor %}) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 2\) `templates/Employee_Detail.html`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Employee profile data) Tj
+0 -12 Td (```html) Tj
+0 -12 Td (<h1 class="text-3xl font-black text-slate-800 tracking-tight">) Tj
+0 -12 Td (    {{ employee.first_name }} {{ employee.last_name }}) Tj
+0 -12 Td (</h1>) Tj
+0 -12 Td (<p class="text-slate-400 font-semibold mt-2">{{ employee.job.title|default:"Executive" }}</p>) Tj
+0 -12 Td (<span class="px-3 py-1 bg-slate-50 text-slate-500 rounded-full text-[10px] font-bold">{{ ) Tj
+0 -12 Td (employee.department.name|default:"General" }}</span>) Tj
+0 -12 Td () Tj
+0 -12 Td (<p class="text-sm font-semibold text-slate-700">{{ employee.email|default:"user@emspro.com" ) Tj
+0 -12 Td (}}</p>) Tj
+0 -12 Td (<p class="text-sm font-semibold text-slate-700">{{ employee.phone }}</p>) Tj
+0 -12 Td (<p class="text-2xl font-black text-slate-800 mt-1">?{{ employee.salary }}</p>) Tj
+0 -12 Td () Tj
+0 -12 Td (<p class="text-lg font-bold text-slate-700">#EMS-00{{ employee.id }}</p>) Tj
+0 -12 Td (<p class="text-lg font-bold text-slate-700">{{ employee.hire_date|date:"d F, Y" }}</p>) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 3\) `templates/Department_Detail.html`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Department details data) Tj
+0 -12 Td (```html) Tj
+0 -12 Td ({{ department.name }}) Tj
+0 -12 Td (<span class="text-xl font-bold text-slate-700">#{{ department.id }}</span>) Tj
+0 -12 Td (<span class="text-xl font-bold text-slate-700">{{ department.total_employees }} Employees</span>) Tj
+0 -12 Td ("{{ department.description|default:'No description available for this department.' }}") Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 4\) `templates/Department.html`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Department list/table display) Tj
+0 -12 Td (```html) Tj
+0 -12 Td ({% for dept in departments %}) Tj
+0 -12 Td (<tr class="border-b border-slate-100 last:border-none hover:bg-slate-50 transition-all group">) Tj
+0 -12 Td (    <td class="px-8 py-5 text-sm font-black text-slate-400">{{ forloop.counter }}</td>) Tj
+0 -12 Td (    <td class="px-8 py-5">) Tj
+0 -12 Td (        <p class="font-bold text-slate-800 text-lg group-hover:text-indigo-600 transition-) Tj
+0 -12 Td (colors">{{ dept.name }}</p>) Tj
+0 -12 Td (    </td>) Tj
+0 -12 Td (</tr>) Tj
+0 -12 Td ({% endfor %}) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 5\) `templates/Employee_Dashboard.html`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Logged-in employee and business data) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 2729 >>
+stream
+BT
+/F1 9 Tf
+36 806 Td
+(```html) Tj
+0 -12 Td (<span class="text-sm font-extrabold text-slate-800">{{ ) Tj
+0 -12 Td (request.user.business_profile.business_name}}</span>) Tj
+0 -12 Td (<span class="text-sm font-extrabold text-slate-800">{{request.user.first_name}} ) Tj
+0 -12 Td ({{request.user.last_name}}</span>) Tj
+0 -12 Td (<span class="text-[10px] font-bold text-indigo-500 uppercase">{{request.user.role}}</span>) Tj
+0 -12 Td () Tj
+0 -12 Td (<h1 class="text-3xl font-black text-slate-800">{{request.user.first_name}} ) Tj
+0 -12 Td ({{request.user.last_name}}</h1>) Tj
+0 -12 Td (<p class="font-bold text-sm text-slate-700">{{request.user.email}}</p>) Tj
+0 -12 Td (<p class="font-bold text-sm text-slate-700">{{request.user.date_joined}}</p>) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (### Leave type dynamic options) Tj
+0 -12 Td (```html) Tj
+0 -12 Td ({% for lt in leave_types %}) Tj
+0 -12 Td (<option value="{{ lt }}">{{ lt }}</option>) Tj
+0 -12 Td ({% endfor %}) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 6\) `templates/Create_Employee.html`) Tj
+0 -12 Td () Tj
+0 -12 Td (### Dynamic dropdown data \(department/job\)) Tj
+0 -12 Td (```html) Tj
+0 -12 Td ({% for dept in departments %}) Tj
+0 -12 Td (<option value="{{ dept.id }}">{{ dept.name }}</option>) Tj
+0 -12 Td ({% endfor %}) Tj
+0 -12 Td () Tj
+0 -12 Td ({% for job in jobs %}) Tj
+0 -12 Td (<option value="{{ job.id }}">{{ job.title }}</option>) Tj
+0 -12 Td ({% endfor %}) Tj
+0 -12 Td (```) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## 7\) Other templates with dynamic form rendering) Tj
+0 -12 Td () Tj
+0 -12 Td (In files below, dynamic Django form object render kiya gaya hai \(form fields as data-bound UI\):) Tj
+0 -12 Td () Tj
+0 -12 Td (- `templates/Attendance.html` ? `{{form}}`) Tj
+0 -12 Td (- `templates/Employee_Update.html` ? `{{ form.first_name }}`, `{{ form.last_name }}`, `{{ ) Tj
+0 -12 Td (form.email }}`, `{{ form.phone }}`, `{{ form.hire_date }}`, `{{ form.salary }}`, `{{ ) Tj
+0 -12 Td (form.department }}`, `{{ form.job }}`) Tj
+0 -12 Td (- `templates/Job.html` ? `{{ form.title }}`, `{{ form.department }}`, `{{ form.job_type }}`, `{{) Tj
+0 -12 Td ( form.salary_range }}`, `{{ form.location }}`, `{{ form.description }}`) Tj
+0 -12 Td () Tj
+0 -12 Td (---) Tj
+0 -12 Td () Tj
+0 -12 Td (## Quick Conclusion) Tj
+0 -12 Td () Tj
+0 -12 Td (Jitne major HTML pages me **data show** ho raha hai, unka main display code upar extract kar ) Tj
+0 -12 Td (diya gaya hai:) Tj
+0 -12 Td (- dashboard analytics + lists) Tj
+0 -12 Td (- employee detail profile) Tj
+0 -12 Td (- department detail and list) Tj
+0 -12 Td (- employee dashboard profile + leave types) Tj
+0 -12 Td (- create employee dropdown bindings) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000129 00000 n 
+0000000197 00000 n 
+0000003256 00000 n 
+0000003382 00000 n 
+0000006423 00000 n 
+0000006549 00000 n 
+0000009330 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+9456
+%%EOF
